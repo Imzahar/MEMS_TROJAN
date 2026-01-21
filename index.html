@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMS TROJAN - Создатель мемов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #00d4ff;
+            --primary-dark: #0099cc;
+            --secondary: #ff3366;
+            --dark: #0a0e17;
+            --dark-light: #1a2238;
+            --light: #f5f7fa;
+            --gray: #8a93a7;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--dark);
+            border-radius: 50%;
+            transform: rotate(45deg);
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(10, 14, 23, 0.9) 0%, rgba(26, 34, 56, 0.9) 100%), 
+                        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 51, 102, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 212, 255, 0.4);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Meme Templates */
+        .meme-templates {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .meme-card {
+            background-color: var(--dark-light);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .meme-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        .meme-image {
+            height: 250px;
+            background-color: #2a354f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .meme-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .meme-card:hover .meme-image img {
+            transform: scale(1.05);
+        }
+        
+        .meme-info {
+            padding: 20px;
+        }
+        
+        .meme-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .meme-info p {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .use-template {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .use-template:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+        
+        /* Meme Editor */
+        .meme-editor {
+            background-color: var(--dark-light);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 40px;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        .editor-active {
+            display: block;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .canvas-container {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--dark);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        #memeCanvas {
+            max-width: 100%;
+            background-color: white;
+            border-radius: 5px;
+        }
+        
+        .editor-controls {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .control-group {
+            margin-bottom: 25px;
+        }
+        
+        .control-group h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .range-container label {
+            min-width: 120px;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+            height: 5px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .color-picker {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: transform 0.2s;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-option.active {
+            border-color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .editor-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .editor-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .primary-btn {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: white;
+            flex: 2;
+        }
+        
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--gray);
+            border: 1px solid var(--gray);
+            flex: 1;
+        }
+        
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+        }
+        
+        .secondary-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-light);
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo .logo-text {
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .footer-logo p {
+            color: var(--gray);
+            max-width: 300px;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-links h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .editor-container {
+                flex-direction: column;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">MEMS <span>TROJAN</span></div>
+            </div>
+            <nav class="nav-links">
+                <a href="#templates">Шаблоны</a>
+                <a href="#editor">Редактор</a>
+                <a href="#create">Создать мем</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Создавайте мемы как профессионал</h1>
+            <p>MEMS TROJAN - лучший онлайн-инструмент для создания мемов. Выбирайте из готовых шаблонов или загружайте свои изображения. Бесплатно и без регистрации!</p>
+            <button class="cta-button" id="startCreating">Начать создавать</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Meme Templates -->
+        <section id="templates">
+            <div class="section-title">
+                <h2>Популярные шаблоны мемов</h2>
+            </div>
+            
+            <div class="meme-templates">
+                <!-- Template 1 -->
+                <div class="meme-card">
+                    <div class="meme-image">
+                        <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                    </div>
+                    <div class="meme-info">
+                        <h3>Довольный Павел</h3>
+                        <p>Классический мем с улыбающимся мужчиной. Идеально для ситуаций, когда всё идёт по плану.</p>
+                        <button class="use-template" data-template="1">Использовать шаблон</button>
+                    </div>
+                </div>
+                
+                <!-- Template 2 -->
+                <div class="meme-card">
+                    <div class="meme-image">
+                        <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                    </div>
+                    <div class="meme-info">
+                        <h3>Удивлённая кошка</h3>
+                        <p>Кот с большими глазами. Подходит для выражения шока, удивления или недоверия.</p>
+                        <button class="use-template" data-template="2">Использовать шаблон</button>
+                    </div>
+                </div>
+                
+                <!-- Template 3 -->
+                <div class="meme-card">
+                    <div class="meme-image">
+                        <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                    </div>
+                    <div class="meme-info">
+                        <h3>Кот за компьютером</h3>
+                        <p>Котик серьёзно работает за ноутбуком. Идеально для IT-тем и рабочих ситуаций.</p>
+                        <button class="use-template" data-template="3">Использовать шаблон</button>
+                    </div>
+                </div>
+                
+                <!-- Template 4 -->
+                <div class="meme-card">
+                    <div class="meme-image">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba14?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                    </div>
+                    <div class="meme-info">
+                        <h3>Задумчивая кошка</h3>
+                        <p>Кошка с философским взглядом. Для глубоких мыслей и жизненных ситуаций.</p>
+                        <button class="use-template" data-template="4">Использовать шаблон</button>
+                    </div>
+                </div>
+                
+                <!-- Template 5 -->
+                <div class="meme-card">
+                    <div class="meme-image">
+                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                    </div>
+                    <div class="meme-info">
+                        <h3>Серьёзная сова</h3>
+                        <p>Мудрая сова с пронзительным взглядом. Для ситуаций, требующих серьёзного подхода.</p>
+                        <button class="use-template" data-template="5">Использовать шаблон</button>
+                    </div>
+                </div>
+                
+                <!-- Template 6 -->
+                <div class="meme-card">
+                    <div class="meme-image">
+                        <img src="https://images.unsplash.com/photo-1573865528899-657a5d2d4c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                    </div>
+                    <div class="meme-info">
+                        <h3>Смеющийся хаски</h3>
+                        <p>Весёлая собака с открытой пастью. Отлично передаёт радость и смех.</p>
+                        <button class="use-template" data-template="6">Использовать шаблон</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Meme Editor -->
+        <section id="editor">
+            <div class="section-title">
+                <h2>Редактор мемов</h2>
+            </div>
+            
+            <div class="meme-editor" id="memeEditor">
+                <div class="editor-container">
+                    <div class="canvas-container">
+                        <canvas id="memeCanvas" width="600" height="500"></canvas>
+                    </div>
+                    
+                    <div class="editor-controls">
+                        <div class="control-group">
+                            <h4>Текст сверху</h4>
+                            <input type="text" class="text-input" id="topText" placeholder="Введите верхний текст...">
+                            <div class="range-container">
+                                <label>Размер шрифта:</label>
+                                <input type="range" id="topFontSize" min="10" max="60" value="30">
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <h4>Текст снизу</h4>
+                            <input type="text" class="text-input" id="bottomText" placeholder="Введите нижний текст...">
+                            <div class="range-container">
+                                <label>Размер шрифта:</label>
+                                <input type="range" id="bottomFontSize" min="10" max="60" value="30">
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <h4>Цвет текста</h4>
+                            <div class="color-picker">
+                                <div class="color-option active" style="background-color: white;" data-color="white"></div>
+                                <div class="color-option" style="background-color: black;" data-color="black"></div>
+                                <div class="color-option" style="background-color: #ff3366;" data-color="#ff3366"></div>
+                                <div class="color-option" style="background-color: #00d4ff;" data-color="#00d4ff"></div>
+                                <div class="color-option" style="background-color: #ffcc00;" data-color="#ffcc00"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="editor-buttons">
+                            <button class="editor-btn primary-btn" id="downloadMeme">Скачать мем</button>
+                            <button class="editor-btn secondary-btn" id="resetEditor">Сбросить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Upload Section -->
+        <section id="create" style="margin-top: 80px;">
+            <div class="section-title">
+                <h2>Создать свой мем</h2>
+            </div>
+            
+            <div style="text-align: center; background-color: var(--dark-light); padding: 40px; border-radius: 15px;">
+                <h3 style="color: var(--primary); margin-bottom: 20px;">Загрузите своё изображение</h3>
+                <p style="color: var(--gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Загрузите свою картинку и создайте уникальный мем с помощью нашего редактора
+                </p>
+                <div style="display: inline-block;">
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                    <button class="cta-button" id="uploadButton">Загрузить изображение</button>
+                </div>
+                <p style="color: var(--gray); margin-top: 15px; font-size: 14px;">
+                    Поддерживаемые форматы: JPG, PNG, GIF
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-text">MEMS <span>TROJAN</span></div>
+                    <p>Лучший онлайн-инструмент для создания мемов. Бесплатно, без регистрации и с огромным выбором шаблонов.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#templates">Шаблоны мемов</a></li>
+                        <li><a href="#editor">Редактор</a></li>
+                        <li><a href="#create">Создать мем</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Помощь</h4>
+                    <ul>
+                        <li><a href="#">Как создать мем</a></li>
+                        <li><a href="#">Частые вопросы</a></li>
+                        <li><a href="#">Обратная связь</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 MEMS TROJAN. Все права защищены. Мемы создаются для развлечения.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Элементы
+            const canvas = document.getElementById('memeCanvas');
+            const ctx = canvas.getContext('2d');
+            const memeEditor = document.getElementById('memeEditor');
+            const topTextInput = document.getElementById('topText');
+            const bottomTextInput = document.getElementById('bottomText');
+            const topFontSizeInput = document.getElementById('topFontSize');
+            const bottomFontSizeInput = document.getElementById('bottomFontSize');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const downloadBtn = document.getElementById('downloadMeme');
+            const resetBtn = document.getElementById('resetEditor');
+            const useTemplateButtons = document.querySelectorAll('.use-template');
+            const startCreatingBtn = document.getElementById('startCreating');
+            const uploadButton = document.getElementById('uploadButton');
+            const imageUpload = document.getElementById('imageUpload');
+            
+            // Переменные состояния
+            let currentImage = null;
+            let textColor = 'white';
+            let topText = '';
+            let bottomText = '';
+            let topFontSize = 30;
+            let bottomFontSize = 30;
+            
+            // Шаблонные изображения
+            const templateImages = [
+                'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                'https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                'https://images.unsplash.com/photo-1561948955-570b270e7c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                'https://images.unsplash.com/photo-1514888286974-6d03bde4ba14?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                'https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
+                'https://images.unsplash.com/photo-1573865528899-657a5d2d4c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
+            ];
+            
+            // Загрузка изображения по умолчанию
+            loadImage(templateImages[0]);
+            
+            // Функция загрузки изображения
+            function loadImage(src) {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = function() {
+                    currentImage = img;
+                    drawMeme();
+                };
+                img.src = src;
+            }
+            
+            // Функция отрисовки мема
+            function drawMeme() {
+                if (!currentImage) return;
+                
+                // Очищаем canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Рассчитываем размеры для отрисовки изображения
+                const aspectRatio = currentImage.width / currentImage.height;
+                let drawWidth = canvas.width;
+                let drawHeight = canvas.height;
+                
+                if (aspectRatio > 1) {
+                    drawHeight = canvas.width / aspectRatio;
+                } else {
+                    drawWidth = canvas.height * aspectRatio;
+                }
+                
+                const offsetX = (canvas.width - drawWidth) / 2;
+                const offsetY = (canvas.height - drawHeight) / 2;
+                
+                // Рисуем изображение
+                ctx.drawImage(currentImage, offsetX, offsetY, drawWidth, drawHeight);
+                
+                // Настройки текста
+                ctx.fillStyle = textColor;
+                ctx.strokeStyle = 'black';
+                ctx.lineWidth = 2;
+                ctx.textAlign = 'center';
+                
+                // Верхний текст
+                if (topText) {
+                    ctx.font = `bold ${topFontSize}px Arial`;
+                    ctx.textBaseline = 'top';
+                    
+                    // Добавляем обводку и заливку текста
+                    ctx.strokeText(topText, canvas.width / 2, 10);
+                    ctx.fillText(topText, canvas.width / 2, 10);
+                }
+                
+                // Нижний текст
+                if (bottomText) {
+                    ctx.font = `bold ${bottomFontSize}px Arial`;
+                    ctx.textBaseline = 'bottom';
+                    
+                    // Добавляем обводку и заливку текста
+                    ctx.strokeText(bottomText, canvas.width / 2, canvas.height - 10);
+                    ctx.fillText(bottomText, canvas.width / 2, canvas.height - 10);
+                }
+            }
+            
+            // Обработчики событий для текста
+            topTextInput.addEventListener('input', function() {
+                topText = this.value;
+                drawMeme();
+            });
+            
+            bottomTextInput.addEventListener('input', function() {
+                bottomText = this.value;
+                drawMeme();
+            });
+            
+            // Обработчики событий для размера шрифта
+            topFontSizeInput.addEventListener('input', function() {
+                topFontSize = parseInt(this.value);
+                drawMeme();
+            });
+            
+            bottomFontSizeInput.addEventListener('input', function() {
+                bottomFontSize = parseInt(this.value);
+                drawMeme();
+            });
+            
+            // Обработчики событий для выбора цвета
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    textColor = this.getAttribute('data-color');
+                    drawMeme();
+                });
+            });
+            
+            // Сброс редактора
+            resetBtn.addEventListener('click', function() {
+                topTextInput.value = '';
+                bottomTextInput.value = '';
+                topFontSizeInput.value = 30;
+                bottomFontSizeInput.value = 30;
+                
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                document.querySelector('.color-option[data-color="white"]').classList.add('active');
+                
+                topText = '';
+                bottomText = '';
+                topFontSize = 30;
+                bottomFontSize = 30;
+                textColor = 'white';
+                
+                drawMeme();
+            });
+            
+            // Скачивание мема
+            downloadBtn.addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.download = 'mems-trojan-meme.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+            
+            // Использование шаблона
+            useTemplateButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const templateIndex = parseInt(this.getAttribute('data-template')) - 1;
+                    loadImage(templateImages[templateIndex]);
+                    
+                    // Показываем редактор и прокручиваем к нему
+                    memeEditor.classList.add('editor-active');
+                    memeEditor.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Сбрасываем тексты
+                    topTextInput.value = '';
+                    bottomTextInput.value = '';
+                    topText = '';
+                    bottomText = '';
+                });
+            });
+            
+            // Кнопка "Начать создавать"
+            startCreatingBtn.addEventListener('click', function() {
+                memeEditor.classList.add('editor-active');
+                memeEditor.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Загрузка собственного изображения
+            uploadButton.addEventListener('click', function() {
+                imageUpload.click();
+            });
+            
+            imageUpload.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        loadImage(event.target.result);
+                        memeEditor.classList.add('editor-active');
+                        memeEditor.scrollIntoView({ behavior: 'smooth' });
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            
+            // Плавная прокрутка для навигации
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
