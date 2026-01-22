@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEMS TROJAN - Продвинутый создатель мемов</title>
+    <title>MEMS TROJAN - Простой создатель мемов</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -203,60 +203,6 @@
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 25px rgba(0, 212, 255, 0.4);
-        }
-        
-        /* Tabs */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--dark-light);
-            flex-wrap: wrap;
-        }
-        
-        .tab-button {
-            padding: 15px 30px;
-            background: transparent;
-            border: none;
-            color: var(--gray);
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-        
-        .tab-button:hover {
-            color: var(--primary);
-        }
-        
-        .tab-button.active {
-            color: var(--primary);
-        }
-        
-        .tab-button.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 3px 3px 0 0;
-        }
-        
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         
         /* Main Content */
@@ -685,69 +631,6 @@
             font-size: 20px;
         }
         
-        /* Stickers panel */
-        .stickers-panel {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            max-height: 200px;
-            overflow-y: auto;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-        }
-        
-        .sticker-item {
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .sticker-item:hover {
-            transform: scale(1.1);
-        }
-        
-        .sticker-item img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        
-        /* Watermark settings */
-        .watermark-settings {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(0, 212, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-        }
-        
-        /* Preview section */
-        .preview-section {
-            display: none;
-            margin-top: 20px;
-            text-align: center;
-        }
-        
-        .preview-container {
-            display: inline-block;
-            position: relative;
-            margin: 20px 0;
-        }
-        
-        #previewCanvas {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
         /* Branding customization */
         .branding-settings {
             background: rgba(255, 51, 102, 0.05);
@@ -942,45 +825,6 @@
             .meme-templates {
                 grid-template-columns: 1fr;
             }
-            
-            .tabs {
-                flex-direction: column;
-            }
-            
-            .tab-button {
-                width: 100%;
-                text-align: center;
-            }
-        }
-        
-        /* Tooltip */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            border-radius: 6px;
-            padding: 10px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            border: 1px solid var(--primary);
-            font-size: 12px;
-        }
-        
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
         }
         
         /* Loading animation */
@@ -1028,39 +872,6 @@
                 transform: translateX(0);
                 opacity: 1;
             }
-        }
-        
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 40px;
-        }
-        
-        .page-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .page-btn:hover {
-            background: rgba(0, 212, 255, 0.1);
-            border-color: var(--primary);
-        }
-        
-        .page-btn.active {
-            background: var(--primary);
-            color: var(--dark);
-            border-color: var(--primary);
         }
         
         /* Template categories */
@@ -1116,74 +927,36 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Продвинутый создатель мемов</h1>
-            <p>MEMS TROJAN - самый мощный онлайн-инструмент для создания мемов с искусственным интеллектом и расширенными функциями редактирования.</p>
+            <h1>Создавайте мемы легко и быстро</h1>
+            <p>MEMS TROJAN - простой и удобный онлайн-инструмент для создания мемов. Выбирайте из готовых шаблонов или загружайте свои изображения.</p>
             <button class="cta-button" id="startCreating">Начать создавать <i class="fas fa-arrow-right"></i></button>
         </div>
     </section>
 
     <!-- Main Content -->
     <div class="container main-content">
-        <!-- Tabs for meme sections -->
-        <div class="tabs" id="memeTabs">
-            <button class="tab-button active" data-tab="popular">Популярные мемы (25+)</button>
-            <button class="tab-button" data-tab="recent">Последние добавленные</button>
-            <button class="tab-button" data-tab="ai">AI-мемы</button>
-            <button class="tab-button" data-tab="viral">Вирусные шаблоны</button>
-            <button class="tab-button" data-tab="classic">Классика</button>
-        </div>
-        
-        <!-- Popular Memes Tab -->
-        <div class="tab-content active" id="popularTab">
+        <!-- Popular Memes -->
+        <section id="templates">
+            <div class="section-title">
+                <h2>Популярные шаблоны мемов</h2>
+            </div>
+            
             <div class="template-categories" id="popularCategories">
                 <button class="category-btn active" data-category="all">Все</button>
                 <button class="category-btn" data-category="animals">Животные</button>
-                <button class="category-btn" data-category="movies">Фильмы</button>
-                <button class="category-btn" data-category="games">Игры</button>
-                <button class="category-btn" data-category="celebrities">Знаменитости</button>
                 <button class="category-btn" data-category="reactions">Реакции</button>
+                <button class="category-btn" data-category="classic">Классика</button>
             </div>
             
             <div class="meme-templates" id="popularTemplates">
                 <!-- Templates will be loaded here by JavaScript -->
             </div>
-            
-            <div class="pagination" id="popularPagination">
-                <!-- Pagination will be generated by JavaScript -->
-            </div>
-        </div>
-        
-        <!-- Recent Memes Tab -->
-        <div class="tab-content" id="recentTab">
-            <div class="meme-templates" id="recentTemplates">
-                <!-- Recent templates will be loaded here -->
-            </div>
-        </div>
-        
-        <!-- AI Memes Tab -->
-        <div class="tab-content" id="aiTab">
-            <div style="text-align: center; padding: 40px;">
-                <i class="fas fa-robot" style="font-size: 60px; color: var(--primary); margin-bottom: 20px;"></i>
-                <h3 style="color: var(--primary); margin-bottom: 15px;">Генератор AI-мемов</h3>
-                <p style="color: var(--gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Создавайте уникальные мемы с помощью искусственного интеллекта. Просто опишите идею, и AI создаст мем для вас!
-                </p>
-                <div style="max-width: 500px; margin: 0 auto;">
-                    <input type="text" class="text-input" id="aiPrompt" placeholder="Опишите идею для мема...">
-                    <button class="cta-button" id="generateAiMeme" style="margin-top: 20px; width: 100%;">
-                        <i class="fas fa-magic"></i> Сгенерировать AI-мем
-                    </button>
-                </div>
-                <div class="meme-templates" id="aiTemplates" style="margin-top: 40px;">
-                    <!-- AI generated memes will appear here -->
-                </div>
-            </div>
-        </div>
+        </section>
         
         <!-- Meme Editor -->
         <section id="editor">
             <div class="section-title">
-                <h2>Продвинутый редактор мемов</h2>
+                <h2>Редактор мемов</h2>
             </div>
             
             <div class="meme-editor" id="memeEditor">
@@ -1193,21 +966,13 @@
                         <div class="canvas-wrapper">
                             <canvas id="memeCanvas" width="800" height="600"></canvas>
                         </div>
-                        <div class="preview-section" id="previewSection">
-                            <div class="preview-container">
-                                <canvas id="previewCanvas" width="300" height="225"></canvas>
-                            </div>
-                            <p style="color: var(--gray); margin-top: 10px;">Предпросмотр для социальных сетей</p>
-                        </div>
                     </div>
                     
                     <div class="editor-controls">
                         <div class="editor-tabs" id="editorTabs">
                             <button class="editor-tab active" data-panel="text">Текст</button>
                             <button class="editor-tab" data-panel="effects">Эффекты</button>
-                            <button class="editor-tab" data-panel="stickers">Стикеры</button>
                             <button class="editor-tab" data-panel="branding">Брендинг</button>
-                            <button class="editor-tab" data-panel="advanced">Дополнительно</button>
                         </div>
                         
                         <!-- Text Panel -->
@@ -1252,10 +1017,6 @@
                                     <div class="color-option" style="background-color: #ff3366;" data-color="#ff3366" title="Розовый"></div>
                                     <div class="color-option" style="background-color: #00d4ff;" data-color="#00d4ff" title="Голубой"></div>
                                     <div class="color-option" style="background-color: #ffcc00;" data-color="#ffcc00" title="Жёлтый"></div>
-                                    <div class="color-option tooltip" style="background: linear-gradient(45deg, #ff3366, #00d4ff);" data-color="gradient" title="Градиент">
-                                        <i class="fas fa-fill-drip"></i>
-                                        <span class="tooltiptext">Градиентный цвет</span>
-                                    </div>
                                 </div>
                                 <div class="range-container">
                                     <label>Обводка:</label>
@@ -1310,28 +1071,12 @@
                                         <i class="fas fa-adjust"></i>
                                         Контраст
                                     </button>
-                                    <button class="feature-btn" data-filter="hue-rotate(90deg)">
-                                        <i class="fas fa-palette"></i>
-                                        Цвет
-                                    </button>
-                                    <button class="feature-btn" data-filter="blur(5px)">
-                                        <i class="fas fa-cloud"></i>
-                                        Размытие
-                                    </button>
                                 </div>
                             </div>
                             
                             <div class="control-group">
                                 <h4><i class="fas fa-crop-alt"></i> Обрезка и поворот</h4>
                                 <div class="advanced-controls">
-                                    <button class="feature-btn" id="cropSquare">
-                                        <i class="fas fa-square"></i>
-                                        Квадрат
-                                    </button>
-                                    <button class="feature-btn" id="cropInstagram">
-                                        <i class="fab fa-instagram"></i>
-                                        Instagram
-                                    </button>
                                     <button class="feature-btn" id="rotateLeft">
                                         <i class="fas fa-undo"></i>
                                         Повернуть влево
@@ -1347,48 +1092,6 @@
                                     <button class="feature-btn" id="resetTransform">
                                         <i class="fas fa-sync-alt"></i>
                                         Сбросить
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Stickers Panel -->
-                        <div class="editor-panel" id="stickersPanel">
-                            <div class="control-group">
-                                <h4><i class="fas fa-sticky-note"></i> Стикеры и эмодзи</h4>
-                                <div class="stickers-panel" id="stickersContainer">
-                                    <!-- Stickers will be loaded here -->
-                                </div>
-                                <div class="editor-buttons" style="margin-top: 15px;">
-                                    <button class="editor-btn secondary-btn" id="addEmojiBtn">
-                                        <i class="fas fa-smile"></i> Эмодзи
-                                    </button>
-                                    <button class="editor-btn secondary-btn" id="uploadStickerBtn">
-                                        <i class="fas fa-upload"></i> Загрузить
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="control-group">
-                                <h4><i class="fas fa-image"></i> Рамки</h4>
-                                <div class="advanced-controls">
-                                    <button class="feature-btn" data-frame="none">
-                                        Без рамки
-                                    </button>
-                                    <button class="feature-btn" data-frame="solid">
-                                        Простая
-                                    </button>
-                                    <button class="feature-btn" data-frame="polaroid">
-                                        Полароид
-                                    </button>
-                                    <button class="feature-btn" data-frame="instagram">
-                                        Instagram
-                                    </button>
-                                    <button class="feature-btn" data-frame="rounded">
-                                        Закругленная
-                                    </button>
-                                    <button class="feature-btn" data-frame="shadow">
-                                        С тенью
                                     </button>
                                 </div>
                             </div>
@@ -1433,109 +1136,6 @@
                                     <i class="fas fa-undo"></i> Сбросить
                                 </button>
                             </div>
-                            
-                            <div class="control-group watermark-settings">
-                                <h4><i class="fas fa-water"></i> Водяной знак</h4>
-                                <div class="range-container">
-                                    <label>Текст водяного знака:</label>
-                                    <input type="text" class="text-input" id="watermarkText" placeholder="Ваш водяной знак">
-                                </div>
-                                <div class="range-container">
-                                    <label>Прозрачность:</label>
-                                    <input type="range" id="watermarkOpacity" min="10" max="100" value="30">
-                                    <span id="watermarkOpacityValue">30%</span>
-                                </div>
-                                <div class="range-container">
-                                    <label>Позиция:</label>
-                                    <select class="text-input" id="watermarkPosition" style="padding: 8px 15px;">
-                                        <option value="bottom-right">Внизу справа</option>
-                                        <option value="bottom-left">Внизу слева</option>
-                                        <option value="top-right">Вверху справа</option>
-                                        <option value="top-left">Вверху слева</option>
-                                        <option value="center">По центру</option>
-                                    </select>
-                                </div>
-                                <button class="editor-btn secondary-btn" id="toggleWatermark" style="margin-top: 10px;">
-                                    <i class="fas fa-eye"></i> Показать водяной знак
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Advanced Panel -->
-                        <div class="editor-panel" id="advancedPanel">
-                            <div class="control-group">
-                                <h4><i class="fas fa-magic"></i> AI-улучшения</h4>
-                                <div class="advanced-controls">
-                                    <button class="feature-btn" id="aiEnhance">
-                                        <i class="fas fa-wand-magic-sparkles"></i>
-                                        Улучшить качество
-                                    </button>
-                                    <button class="feature-btn" id="aiRemoveBg">
-                                        <i class="fas fa-eraser"></i>
-                                        Удалить фон
-                                    </button>
-                                    <button class="feature-btn" id="aiColorize">
-                                        <i class="fas fa-palette"></i>
-                                        Раскрасить
-                                    </button>
-                                    <button class="feature-btn" id="aiUpscale">
-                                        <i class="fas fa-expand-alt"></i>
-                                        Увеличить разрешение
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="control-group">
-                                <h4><i class="fas fa-share-alt"></i> Экспорт и публикация</h4>
-                                <div class="advanced-controls">
-                                    <button class="feature-btn" id="exportJpg">
-                                        <i class="fas fa-file-image"></i>
-                                        JPG
-                                    </button>
-                                    <button class="feature-btn" id="exportPng">
-                                        <i class="fas fa-file-image"></i>
-                                        PNG
-                                    </button>
-                                    <button class="feature-btn" id="exportWebp">
-                                        <i class="fas fa-file-image"></i>
-                                        WebP
-                                    </button>
-                                    <button class="feature-btn" id="exportGif">
-                                        <i class="fas fa-file-image"></i>
-                                        GIF
-                                    </button>
-                                    <button class="feature-btn" id="shareTwitter">
-                                        <i class="fab fa-twitter"></i>
-                                        Twitter
-                                    </button>
-                                    <button class="feature-btn" id="shareInstagram">
-                                        <i class="fab fa-instagram"></i>
-                                        Instagram
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="control-group">
-                                <h4><i class="fas fa-history"></i> История изменений</h4>
-                                <div class="advanced-controls">
-                                    <button class="feature-btn" id="undoBtn">
-                                        <i class="fas fa-undo"></i>
-                                        Отменить
-                                    </button>
-                                    <button class="feature-btn" id="redoBtn">
-                                        <i class="fas fa-redo"></i>
-                                        Повторить
-                                    </button>
-                                    <button class="feature-btn" id="saveVersion">
-                                        <i class="fas fa-save"></i>
-                                        Сохранить версию
-                                    </button>
-                                    <button class="feature-btn" id="loadVersion">
-                                        <i class="fas fa-history"></i>
-                                        История
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                         
                         <div class="editor-buttons">
@@ -1563,7 +1163,7 @@
             <div style="text-align: center; background-color: var(--dark-light); padding: 40px; border-radius: 15px;">
                 <h3 style="color: var(--primary); margin-bottom: 20px;">Загрузите своё изображение</h3>
                 <p style="color: var(--gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Загрузите свою картинку и создайте уникальный мем с помощью нашего продвинутого редактора
+                    Загрузите свою картинку и создайте уникальный мем с помощью нашего редактора
                 </p>
                 <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 30px;">
                     <div style="display: inline-block;">
@@ -1572,14 +1172,8 @@
                             <i class="fas fa-upload"></i> Загрузить изображение
                         </button>
                     </div>
-                    <button class="cta-button" id="cameraButton" style="background: linear-gradient(90deg, var(--secondary), #ff6699); display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-camera"></i> Сделать фото
-                    </button>
                     <button class="cta-button" id="urlButton" style="background: linear-gradient(90deg, #00ff88, #00cc66); display: flex; align-items: center; gap: 10px;">
                         <i class="fas fa-link"></i> Из URL
-                    </button>
-                    <button class="cta-button" id="aiGenerateButton" style="background: linear-gradient(90deg, #9966ff, #cc66ff); display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-robot"></i> AI Генерация
                     </button>
                 </div>
                 <div id="dragDropArea" style="border: 2px dashed var(--primary); border-radius: 15px; padding: 40px; margin-top: 30px; background-color: rgba(0, 212, 255, 0.05);">
@@ -1588,8 +1182,7 @@
                     <p style="color: var(--gray);">или нажмите на кнопку выше</p>
                 </div>
                 <div style="margin-top: 30px; color: var(--gray); font-size: 14px;">
-                    <p>Поддерживаемые форматы: JPG, PNG, GIF, WebP, SVG (макс. 25 МБ)</p>
-                    <p>Рекомендуемый размер: от 800x600 до 4000x4000 пикселей</p>
+                    <p>Поддерживаемые форматы: JPG, PNG, GIF, WebP (макс. 10 МБ)</p>
                 </div>
             </div>
         </section>
@@ -1601,7 +1194,7 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <div class="logo-text">MEMS <span>TROJAN</span></div>
-                    <p>Самый продвинутый онлайн-инструмент для создания мемов с AI и расширенными функциями редактирования.</p>
+                    <p>Простой и удобный онлайн-инструмент для создания мемов.</p>
                 </div>
                 
                 <div class="footer-links">
@@ -1618,13 +1211,12 @@
                     <ul>
                         <li><a href="#" id="helpLink">Как создать мем</a></li>
                         <li><a href="#" id="faqLink">Частые вопросы</a></li>
-                        <li><a href="#" id="feedbackLink">Обратная связь</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 MEMS TROJAN. Все права защищены. Мемы создаются для развлечения.</p>
+                <p>&copy; 2023 MEMS TROJAN. Мемы создаются для развлечения.</p>
             </div>
         </div>
     </footer>
@@ -1644,63 +1236,18 @@
         </div>
     </div>
 
-    <!-- Modal для эмодзи -->
-    <div class="modal" id="emojiModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Выберите эмодзи</h3>
-                <button class="close-modal" id="closeEmojiModal">&times;</button>
-            </div>
-            <div id="emojiContainer" style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; max-height: 300px; overflow-y: auto; padding: 10px;">
-                <!-- Эмодзи будут добавлены через JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal для AI генерации -->
-    <div class="modal" id="aiModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">AI Генератор мемов</h3>
-                <button class="close-modal" id="closeAiModal">&times;</button>
-            </div>
-            <div style="margin-bottom: 20px;">
-                <p style="color: var(--gray); margin-bottom: 10px;">Опишите мем, который хотите создать:</p>
-                <textarea class="text-input" id="aiDescription" placeholder="Например: 'грустный кот сидит за компьютером с надписью когда код не работает'" rows="4"></textarea>
-            </div>
-            <div style="margin-bottom: 20px;">
-                <p style="color: var(--gray); margin-bottom: 10px;">Выберите стиль:</p>
-                <div class="advanced-controls">
-                    <button class="feature-btn" data-style="funny">Смешной</button>
-                    <button class="feature-btn" data-style="sarcastic">Саркастичный</button>
-                    <button class="feature-btn" data-style="motivational">Мотивационный</button>
-                    <button class="feature-btn" data-style="reaction">Реакция</button>
-                </div>
-            </div>
-            <div class="editor-buttons" style="margin-top: 20px;">
-                <button class="editor-btn primary-btn" id="generateAiImage">
-                    <i class="fas fa-robot"></i> Сгенерировать
-                </button>
-                <button class="editor-btn secondary-btn" id="cancelAiModal">Отмена</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Notification -->
     <div class="notification" id="notification">
         <span id="notificationText"></span>
     </div>
 
     <script>
-        // Расширенный редактор мемов с 25+ шаблонами и кастомизацией брендинга
         document.addEventListener('DOMContentLoaded', function() {
             // ===================== ИНИЦИАЛИЗАЦИЯ ПЕРЕМЕННЫХ =====================
             
             // Основные элементы
             const canvas = document.getElementById('memeCanvas');
             const ctx = canvas.getContext('2d');
-            const previewCanvas = document.getElementById('previewCanvas');
-            const previewCtx = previewCanvas.getContext('2d');
             const memeEditor = document.getElementById('memeEditor');
             
             // Настройки редактора
@@ -1718,25 +1265,16 @@
                 selectedFont: 'Impact',
                 filter: 'none',
                 rotation: 0,
-                scale: 1,
-                watermark: {
-                    text: '',
-                    opacity: 0.3,
-                    position: 'bottom-right',
-                    visible: false
-                },
-                stickers: []
+                scale: 1
             };
             
-            let history = [];
-            let historyIndex = -1;
             let selectedTemplateCategory = 'all';
             
             // ===================== ИНИЦИАЛИЗАЦИЯ ШАБЛОНОВ =====================
             
-            // Массив из 25+ популярных мемов с категориями
+            // Массив из 25 популярных мемов (все из папки images)
             const popularTemplates = [
-                // Животные (8)
+                // Животные (10)
                 {id: 1, name: "Счастливый пес", category: "animals", description: "Радостная собака виляет хвостом", image: "images/meme1.jpg"},
                 {id: 2, name: "Удивлённый кот", category: "animals", description: "Кот с большими глазами от удивления", image: "images/meme2.jpg"},
                 {id: 3, name: "Кот за ноутбуком", category: "animals", description: "Серьёзный кот работает за компьютером", image: "images/meme3.jpg"},
@@ -1745,54 +1283,27 @@
                 {id: 6, name: "Смеющийся хаски", category: "animals", description: "Хаски с открытой пастью смеется", image: "images/meme6.jpg"},
                 {id: 7, name: "Сердитый хомяк", category: "animals", description: "Маленький хомяк с сердитым видом", image: "images/meme7.jpg"},
                 {id: 8, name: "Подмигивающий дельфин", category: "animals", description: "Дельфин с игривым выражением", image: "images/meme8.jpg"},
+                {id: 9, name: "Ленивый коала", category: "animals", description: "Коала спит на дереве", image: "images/meme9.jpg"},
+                {id: 10, name: "Хитрый лис", category: "animals", description: "Лис с хитрой улыбкой", image: "images/meme10.jpg"},
                 
-                // Фильмы (6)
-                {id: 9, name: "Леонид с креветкой", category: "movies", description: "Известный кадр из фильма", image: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 10, name: "Матрица: красная таблетка", category: "movies", description: "Выбор между реальностями", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 11, name: "Властелин колец", category: "movies", description: "Легендарная сцена с Голлумом", image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 12, name: "Звёздные войны", category: "movies", description: "Йода с мудрым советом", image: "https://images.unsplash.com/photo-1533616688419-b7a585564f70?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 13, name: "Гарри Поттер", category: "movies", description: "Волшебная сцена из фильма", image: "https://images.unsplash.com/photo-1598153346810-860daa814c4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 14, name: "Мстители", category: "movies", description: "Командный кадр из фильма", image: "https://images.unsplash.com/photo-1635805737707-575885ab0820?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
+                // Реакции (8)
+                {id: 11, name: "Шок и недоверие", category: "reactions", description: "Реакция на неожиданные новости", image: "images/meme11.jpg"},
+                {id: 12, name: "Лицо ладони", category: "reactions", description: "Когда ситуация безнадёжна", image: "images/meme12.jpg"},
+                {id: 13, name: "Злой начальник", category: "reactions", description: "Реакция на плохую работу", image: "images/meme13.jpg"},
+                {id: 14, name: "Саркастичные аплодисменты", category: "reactions", description: "Аплодисменты с сарказмом", image: "images/meme14.jpg"},
+                {id: 15, name: "Внезапное прозрение", category: "reactions", description: "Момент озарения и понимания", image: "images/meme15.jpg"},
+                {id: 16, name: "Счастливые слезы", category: "reactions", description: "Слёзы радости и счастья", image: "images/meme16.jpg"},
+                {id: 17, name: "Смущённое лицо", category: "reactions", description: "Когда попадаешь в неловкую ситуацию", image: "images/meme17.jpg"},
+                {id: 18, name: "Злорадная улыбка", category: "reactions", description: "Когда у конкурента проблемы", image: "images/meme18.jpg"},
                 
-                // Игры (5)
-                {id: 15, name: "Майнкрафт: Creeper", category: "games", description: "Знаменитый крипер из игры", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 16, name: "Among Us: предатель", category: "games", description: "Среди нас есть предатель", image: "https://images.unsplash.com/photo-1618331833071-1c0c6ee3d19e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 17, name: "Герои Варкрафта", category: "games", description: "Персонажи известной игры", image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 18, name: "Киберпанк 2077", category: "games", description: "Футуристический стиль игры", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 19, name: "Дота 2: момент", category: "games", description: "Культовый момент из игры", image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                
-                // Знаменитости (6)
-                {id: 20, name: "Саркастичный Илон", category: "celebrities", description: "Илон Маск с ироничной улыбкой", image: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 21, name: "Удивлённый Киану", category: "celebrities", description: "Киану Ривз с удивлённым лицом", image: "https://images.unsplash.com/photo-1580477667995-2b94f01c9516?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 22, name: "Смеющаяся Дженнифер", category: "celebrities", description: "Дженнифер Лоуренс смеётся", image: "https://images.unsplash.com/photo-1494790108755-2616c113a1c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 23, name: "Задумчивый ДиКаприо", category: "celebrities", description: "Леонардо ДиКаприо размышляет", image: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 24, name: "Подмигивающий Райан", category: "celebrities", description: "Райан Гослинг подмигивает", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 25, name: "Серьёзная Скарлетт", category: "celebrities", description: "Скарлетт Йоханссон с серьёзным видом", image: "https://images.unsplash.com/photo-1494790108755-2616c113a1c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                
-                // Реакции (6)
-                {id: 26, name: "Шок и недоверие", category: "reactions", description: "Реакция на неожиданные новости", image: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 27, name: "Лицо ладони", category: "reactions", description: "Когда ситуация безнадёжна", image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 28, name: "Злой начальник", category: "reactions", description: "Реакция на плохую работу", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 29, name: "Саркастичные аплодисменты", category: "reactions", description: "Аплодисменты с сарказмом", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 30, name: "Внезапное прозрение", category: "reactions", description: "Момент озарения и понимания", image: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 31, name: "Счастливые слезы", category: "reactions", description: "Слёзы радости и счастья", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                
-                // Дополнительные (6)
-                {id: 32, name: "Киберпанк неон", category: "viral", description: "Неоновый стиль киберпанка", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 33, name: "Аниме реакция", category: "viral", description: "Типичная аниме реакция", image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 34, name: "Мем с дистрофами", category: "viral", description: "Классический формат дистрофов", image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 35, name: "Шаблон для сравнения", category: "viral", description: "Формат сравнения двух вещей", image: "https://images.unsplash.com/photo-1514888286974-6d03bde4ba14?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 36, name: "Изменение мнения", category: "viral", description: "Шаблон изменения точки зрения", image: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"},
-                {id: 37, name: "Шаблон выбора", category: "viral", description: "Формат сложного выбора", image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"}
-            ];
-            
-            // Стикеры для редактора
-            const stickers = [
-                '😀', '😂', '🤣', '😍', '🥰', '😎', '🤩', '😜', '🤪', '😏',
-                '😒', '😭', '😡', '🤬', '🤯', '🥶', '😱', '🤮', '👻', '💀',
-                '👾', '🤖', '🎃', '💩', '🙈', '🙉', '🙊', '👑', '💎', '🔥',
-                '✨', '🌟', '💥', '💫', '⭐', '🦄', '🐶', '🐱', '🐭', '🐹',
-                '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸'
+                // Классика (7)
+                {id: 19, name: "Довольный Павел", category: "classic", description: "Классический мем с улыбающимся мужчиной", image: "images/meme19.jpg"},
+                {id: 20, name: "Успешный ребёнок", category: "classic", description: "Мальчик с гордым выражением лица", image: "images/meme20.jpg"},
+                {id: 21, name: "Злой малыш", category: "classic", description: "Сердитый ребёнок скрестил руки", image: "images/meme21.jpg"},
+                {id: 22, name: "Капитан Америка", category: "classic", description: "Я понял эту ссылку", image: "images/meme22.jpg"},
+                {id: 23, name: "Социально Awkward", category: "classic", description: "Социально неловкий пингвин", image: "images/meme23.jpg"},
+                {id: 24, name: "Параноидальный попугай", category: "classic", description: "Они наблюдают за мной", image: "images/meme24.jpg"},
+                {id: 25, name: "Филозофский ёж", category: "classic", description: "Ёж с глубокомысленным видом", image: "images/meme25.jpg"}
             ];
             
             // ===================== ИНИЦИАЛИЗАЦИЯ ЭЛЕМЕНТОВ =====================
@@ -1825,13 +1336,6 @@
             const applyBrandingBtn = document.getElementById('applyBranding');
             const resetBrandingBtn = document.getElementById('resetBranding');
             
-            // Элементы водяного знака
-            const watermarkText = document.getElementById('watermarkText');
-            const watermarkOpacity = document.getElementById('watermarkOpacity');
-            const watermarkOpacityValue = document.getElementById('watermarkOpacityValue');
-            const watermarkPosition = document.getElementById('watermarkPosition');
-            const toggleWatermarkBtn = document.getElementById('toggleWatermark');
-            
             // Кнопки
             const downloadBtn = document.getElementById('downloadMeme');
             const resetBtn = document.getElementById('resetEditor');
@@ -1841,14 +1345,12 @@
             const saveDraftBtn = document.getElementById('saveDraft');
             
             // Элементы вкладок
-            const tabButtons = document.querySelectorAll('.tab-button');
             const categoryButtons = document.querySelectorAll('.category-btn');
             const editorTabs = document.querySelectorAll('.editor-tab');
             const editorPanels = document.querySelectorAll('.editor-panel');
             
             // Другие элементы
             const popularTemplatesContainer = document.getElementById('popularTemplates');
-            const stickersContainer = document.getElementById('stickersContainer');
             const canvasLoader = document.getElementById('canvasLoader');
             const notification = document.getElementById('notification');
             const notificationText = document.getElementById('notificationText');
@@ -1867,22 +1369,6 @@
                 }, 3000);
             }
             
-            // Функция сохранения состояния в историю
-            function saveState() {
-                // Удаляем все состояния после текущего индекса
-                history = history.slice(0, historyIndex + 1);
-                
-                // Сохраняем текущее состояние
-                history.push(JSON.parse(JSON.stringify(currentState)));
-                historyIndex++;
-                
-                // Ограничиваем историю 20 шагами
-                if (history.length > 20) {
-                    history.shift();
-                    historyIndex--;
-                }
-            }
-            
             // Функция загрузки изображения
             function loadImage(src) {
                 canvasLoader.style.display = 'block';
@@ -1894,7 +1380,6 @@
                     currentImage = img;
                     drawMeme();
                     canvasLoader.style.display = 'none';
-                    saveState();
                 };
                 
                 img.onerror = function() {
@@ -1958,14 +1443,7 @@
                     ctx.textBaseline = 'top';
                     
                     // Применяем цвет текста
-                    if (currentState.textColor === 'gradient') {
-                        const gradient = ctx.createLinearGradient(0, currentState.topY - 20, canvas.width, currentState.topY + 20);
-                        gradient.addColorStop(0, '#ff3366');
-                        gradient.addColorStop(1, '#00d4ff');
-                        ctx.fillStyle = gradient;
-                    } else {
-                        ctx.fillStyle = currentState.textColor;
-                    }
+                    ctx.fillStyle = currentState.textColor;
                     
                     // Добавляем обводку текста
                     if (currentState.strokeWidth > 0) {
@@ -1984,14 +1462,7 @@
                     ctx.textBaseline = 'bottom';
                     
                     // Применяем цвет текста
-                    if (currentState.textColor === 'gradient') {
-                        const gradient = ctx.createLinearGradient(0, currentState.bottomY - 20, canvas.width, currentState.bottomY + 20);
-                        gradient.addColorStop(0, '#ff3366');
-                        gradient.addColorStop(1, '#00d4ff');
-                        ctx.fillStyle = gradient;
-                    } else {
-                        ctx.fillStyle = currentState.textColor;
-                    }
+                    ctx.fillStyle = currentState.textColor;
                     
                     // Добавляем обводку текста
                     if (currentState.strokeWidth > 0) {
@@ -2004,56 +1475,8 @@
                     ctx.fillText(currentState.bottomText, canvas.width / 2, currentState.bottomY);
                 }
                 
-                // Водяной знак
-                if (currentState.watermark.visible && currentState.watermark.text) {
-                    ctx.font = `20px ${currentState.selectedFont}`;
-                    ctx.fillStyle = `rgba(255, 255, 255, ${currentState.watermark.opacity})`;
-                    ctx.textBaseline = 'alphabetic';
-                    ctx.textAlign = 'right';
-                    
-                    let watermarkX, watermarkY;
-                    
-                    switch (currentState.watermark.position) {
-                        case 'bottom-right':
-                            watermarkX = canvas.width - 20;
-                            watermarkY = canvas.height - 20;
-                            break;
-                        case 'bottom-left':
-                            watermarkX = 20;
-                            watermarkY = canvas.height - 20;
-                            ctx.textAlign = 'left';
-                            break;
-                        case 'top-right':
-                            watermarkX = canvas.width - 20;
-                            watermarkY = 40;
-                            break;
-                        case 'top-left':
-                            watermarkX = 20;
-                            watermarkY = 40;
-                            ctx.textAlign = 'left';
-                            break;
-                        case 'center':
-                            watermarkX = canvas.width / 2;
-                            watermarkY = canvas.height / 2;
-                            ctx.textAlign = 'center';
-                            break;
-                    }
-                    
-                    ctx.fillText(currentState.watermark.text, watermarkX, watermarkY);
-                }
-                
                 // Восстанавливаем контекст
                 ctx.restore();
-                
-                // Обновляем предпросмотр
-                updatePreview();
-            }
-            
-            // Обновление предпросмотра
-            function updatePreview() {
-                const scale = previewCanvas.width / canvas.width;
-                previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
-                previewCtx.drawImage(canvas, 0, 0, previewCanvas.width, previewCanvas.height);
             }
             
             // Инициализация популярных шаблонов
@@ -2066,16 +1489,14 @@
                     filteredTemplates = popularTemplates.filter(t => t.category === selectedTemplateCategory);
                 }
                 
-                // Отображаем первые 12 шаблонов (для пагинации)
-                const templatesToShow = filteredTemplates.slice(0, 12);
-                
-                templatesToShow.forEach(template => {
+                // Отображаем все шаблоны категории
+                filteredTemplates.forEach(template => {
                     const memeCard = document.createElement('div');
                     memeCard.className = 'meme-card';
                     memeCard.innerHTML = `
                         <div class="meme-image">
                             <img src="${template.image}" alt="${template.name}" 
-                                 onerror="this.src='https://images.unsplash.com/photo-${getRandomUnsplashId()}?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'">
+                                 onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                         </div>
                         <div class="meme-info">
                             <h3>${template.name}</h3>
@@ -2100,91 +1521,36 @@
                         }
                     });
                 });
-                
-                // Инициализируем пагинацию
-                initPagination(filteredTemplates.length);
-            }
-            
-            // Инициализация пагинации
-            function initPagination(totalItems) {
-                const paginationContainer = document.getElementById('popularPagination');
-                paginationContainer.innerHTML = '';
-                
-                const itemsPerPage = 12;
-                const totalPages = Math.ceil(totalItems / itemsPerPage);
-                
-                for (let i = 1; i <= Math.min(totalPages, 5); i++) {
-                    const pageBtn = document.createElement('button');
-                    pageBtn.className = i === 1 ? 'page-btn active' : 'page-btn';
-                    pageBtn.textContent = i;
-                    pageBtn.addEventListener('click', function() {
-                        // Здесь можно реализовать загрузку страницы
-                        document.querySelectorAll('.page-btn').forEach(btn => btn.classList.remove('active'));
-                        this.classList.add('active');
-                        showNotification(`Загружена страница ${i}`);
-                    });
-                    paginationContainer.appendChild(pageBtn);
-                }
-            }
-            
-            // Инициализация стикеров
-            function initStickers() {
-                stickersContainer.innerHTML = '';
-                
-                stickers.forEach((sticker, index) => {
-                    const stickerItem = document.createElement('div');
-                    stickerItem.className = 'sticker-item';
-                    stickerItem.textContent = sticker;
-                    stickerItem.style.fontSize = '30px';
-                    
-                    stickerItem.addEventListener('click', function() {
-                        // Добавляем стикер на мем
-                        currentState.stickers.push({
-                            type: 'emoji',
-                            content: sticker,
-                            x: canvas.width / 2,
-                            y: canvas.height / 2,
-                            size: 40
-                        });
-                        drawMeme();
-                        showNotification(`Добавлен стикер ${sticker}`);
-                    });
-                    
-                    stickersContainer.appendChild(stickerItem);
-                });
-            }
-            
-            // Служебная функция для случайного изображения
-            function getRandomUnsplashId() {
-                const unsplashIds = [
-                    '1620641788421-7a1c342ea42e',
-                    '1611605698335-8b1569810432',
-                    '1561948955-570b270e7c36',
-                    '1514888286974-6d03bde4ba14',
-                    '1543852786-1cf6624b9987',
-                    '1573865528899-657a5d2d4c5d'
-                ];
-                return unsplashIds[Math.floor(Math.random() * unsplashIds.length)];
             }
             
             // ===================== ИНИЦИАЛИЗАЦИЯ СОБЫТИЙ =====================
             
             // Инициализация при загрузке страницы
             function init() {
+                // Пробуем загрузить логотип по умолчанию из папки images
+                const defaultLogo = 'images/logo.png';
+                const logoImg = new Image();
+                logoImg.onload = function() {
+                    customLogo.src = defaultLogo;
+                    customLogo.style.display = 'block';
+                    logoIcon.classList.add('has-custom-logo');
+                };
+                logoImg.onerror = function() {
+                    // Если логотипа нет, используем стандартный
+                    console.log('Логотип не найден, используется стандартный');
+                };
+                logoImg.src = defaultLogo;
+                
                 // Загружаем первый шаблон
-                loadImage(popularTemplates[0].image);
+                if (popularTemplates.length > 0) {
+                    loadImage(popularTemplates[0].image);
+                }
                 
                 // Инициализируем популярные шаблоны
                 initPopularTemplates();
                 
-                // Инициализируем стикеры
-                initStickers();
-                
                 // Загружаем сохранённый брендинг
                 loadBranding();
-                
-                // Сохраняем начальное состояние
-                saveState();
                 
                 showNotification('Редактор MEMS TROJAN готов к работе!');
             }
@@ -2279,57 +1645,24 @@
             document.getElementById('rotateLeft').addEventListener('click', function() {
                 currentState.rotation -= 90;
                 drawMeme();
-                saveState();
             });
             
             document.getElementById('rotateRight').addEventListener('click', function() {
                 currentState.rotation += 90;
                 drawMeme();
-                saveState();
             });
             
             document.getElementById('flipHorizontal').addEventListener('click', function() {
                 currentState.scale *= -1;
                 drawMeme();
-                saveState();
             });
             
             document.getElementById('resetTransform').addEventListener('click', function() {
                 currentState.rotation = 0;
                 currentState.scale = 1;
+                currentState.filter = 'none';
                 drawMeme();
-                saveState();
-            });
-            
-            // Обработчики событий для водяного знака
-            watermarkText.addEventListener('input', function() {
-                currentState.watermark.text = this.value;
-                if (currentState.watermark.visible) {
-                    drawMeme();
-                }
-            });
-            
-            watermarkOpacity.addEventListener('input', function() {
-                currentState.watermark.opacity = parseInt(this.value) / 100;
-                watermarkOpacityValue.textContent = `${this.value}%`;
-                if (currentState.watermark.visible) {
-                    drawMeme();
-                }
-            });
-            
-            watermarkPosition.addEventListener('change', function() {
-                currentState.watermark.position = this.value;
-                if (currentState.watermark.visible) {
-                    drawMeme();
-                }
-            });
-            
-            toggleWatermark.addEventListener('click', function() {
-                currentState.watermark.visible = !currentState.watermark.visible;
-                this.innerHTML = currentState.watermark.visible ? 
-                    '<i class="fas fa-eye-slash"></i> Скрыть водяной знак' : 
-                    '<i class="fas fa-eye"></i> Показать водяной знак';
-                drawMeme();
+                showNotification('Трансформации сброшены');
             });
             
             // ===================== БРЕНДИНГ И ЛОГОТИП =====================
@@ -2342,10 +1675,14 @@
                         const branding = JSON.parse(savedBranding);
                         
                         // Загружаем логотип
-                        if (branding.logo) {
-                            customLogo.src = branding.logo;
-                            customLogo.style.display = 'block';
-                            logoIcon.classList.add('has-custom-logo');
+                        if (branding.logo && branding.logo !== '') {
+                            const logoImg = new Image();
+                            logoImg.onload = function() {
+                                customLogo.src = branding.logo;
+                                customLogo.style.display = 'block';
+                                logoIcon.classList.add('has-custom-logo');
+                            };
+                            logoImg.src = branding.logo;
                         }
                         
                         // Загружаем название бренда
@@ -2493,14 +1830,7 @@
                         selectedFont: 'Impact',
                         filter: 'none',
                         rotation: 0,
-                        scale: 1,
-                        watermark: {
-                            text: '',
-                            opacity: 0.3,
-                            position: 'bottom-right',
-                            visible: false
-                        },
-                        stickers: []
+                        scale: 1
                     };
                     
                     // Сброс значений полей ввода
@@ -2512,9 +1842,6 @@
                     bottomYPosition.value = 550;
                     strokeWidthInput.value = 2;
                     strokeColorInput.value = '#000000';
-                    watermarkText.value = '';
-                    watermarkOpacity.value = 30;
-                    watermarkPosition.value = 'bottom-right';
                     
                     // Сброс визуальных элементов
                     colorOptions.forEach(opt => {
@@ -2529,7 +1856,6 @@
                     document.querySelector('.font-option[data-font="Impact"]').classList.add('active');
                     
                     drawMeme();
-                    saveState();
                     showNotification('Редактор полностью сброшен');
                 }
             });
@@ -2569,8 +1895,8 @@
             
             imageUpload.addEventListener('change', function(e) {
                 if (e.target.files && e.target.files[0]) {
-                    if (e.target.files[0].size > 25 * 1024 * 1024) {
-                        showNotification('Файл слишком большой (макс. 25 МБ)', 'error');
+                    if (e.target.files[0].size > 10 * 1024 * 1024) {
+                        showNotification('Файл слишком большой (макс. 10 МБ)', 'error');
                         return;
                     }
                     
@@ -2611,8 +1937,8 @@
                         return;
                     }
                     
-                    if (file.size > 25 * 1024 * 1024) {
-                        showNotification('Файл слишком большой (макс. 25 МБ)', 'error');
+                    if (file.size > 10 * 1024 * 1024) {
+                        showNotification('Файл слишком большой (макс. 10 МБ)', 'error');
                         return;
                     }
                     
@@ -2627,29 +1953,41 @@
                 }
             });
             
-            // ===================== ВКЛАДКИ И НАВИГАЦИЯ =====================
-            
-            // Переключение вкладок шаблонов
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Активируем вкладку
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Показываем соответствующий контент
-                    document.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    document.getElementById(`${tabId}Tab`).classList.add('active');
-                    
-                    // Загружаем контент для вкладки
-                    if (tabId === 'popular') {
-                        initPopularTemplates();
-                    }
-                });
+            // Загрузка по URL
+            document.getElementById('urlButton').addEventListener('click', function() {
+                document.getElementById('urlModal').style.display = 'flex';
             });
+            
+            document.getElementById('closeUrlModal').addEventListener('click', function() {
+                document.getElementById('urlModal').style.display = 'none';
+            });
+            
+            document.getElementById('cancelUrlModal').addEventListener('click', function() {
+                document.getElementById('urlModal').style.display = 'none';
+            });
+            
+            document.getElementById('loadUrlImage').addEventListener('click', function() {
+                const url = document.getElementById('imageUrl').value.trim();
+                if (!url) {
+                    showNotification('Введите URL изображения', 'error');
+                    return;
+                }
+                
+                // Простая проверка URL
+                if (!url.match(/^https?:\/\/.+\/.+\.(jpg|jpeg|png|gif|webp)/i)) {
+                    showNotification('Введите корректный URL изображения', 'error');
+                    return;
+                }
+                
+                loadImage(url);
+                document.getElementById('urlModal').style.display = 'none';
+                memeEditor.classList.add('editor-active');
+                memeEditor.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('imageUrl').value = '';
+                showNotification('Изображение загружается по URL...');
+            });
+            
+            // ===================== ВКЛАДКИ И НАВИГАЦИЯ =====================
             
             // Переключение категорий
             categoryButtons.forEach(button => {
@@ -2665,10 +2003,8 @@
                     const categoryNames = {
                         'all': 'Все',
                         'animals': 'Животные',
-                        'movies': 'Фильмы',
-                        'games': 'Игры',
-                        'celebrities': 'Знаменитости',
-                        'reactions': 'Реакции'
+                        'reactions': 'Реакции',
+                        'classic': 'Классика'
                     };
                     
                     showNotification(`Показаны шаблоны: ${categoryNames[category]}`);
@@ -2703,21 +2039,15 @@
                 });
             });
             
-            // Помощь и обратная связь
+            // Помощь
             document.getElementById('helpLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                showNotification('Используйте редактор для добавления текста, стикеров и применения эффектов к изображению!');
+                showNotification('Используйте редактор для добавления текста и применения эффектов к изображению!');
             });
             
             document.getElementById('faqLink').addEventListener('click', function(e) {
                 e.preventDefault();
                 showNotification('Частые вопросы: 1) Сохраняйте проекты кнопкой "Сохранить проект", 2) Кастомизируйте брендинг во вкладке "Брендинг"');
-            });
-            
-            document.getElementById('feedbackLink').addEventListener('click', function(e) {
-                e.preventDefault();
-                const email = 'feedback@memstrojan.com';
-                showNotification(`Отправьте письмо на ${email} или создайте issue на GitHub!`);
             });
             
             // ===================== ЗАПУСК ПРИЛОЖЕНИЯ =====================
