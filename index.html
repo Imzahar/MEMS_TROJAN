@@ -323,15 +323,23 @@
             border-radius: 10px;
             overflow: hidden;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+        }
+        
+        .canvas-wrapper {
+            position: relative;
+            max-width: 100%;
         }
         
         #memeCanvas {
             max-width: 100%;
             background-color: white;
             border-radius: 5px;
+            display: block;
         }
         
         .editor-controls {
@@ -341,28 +349,41 @@
         
         .control-group {
             margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .control-group h4 {
             margin-bottom: 15px;
             color: var(--primary);
             font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-group h4 i {
+            font-size: 20px;
         }
         
         .text-input {
             width: 100%;
             padding: 12px 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             color: white;
             font-size: 16px;
             margin-bottom: 10px;
+            transition: all 0.3s;
         }
         
         .text-input:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
         }
         
         .range-container {
@@ -374,6 +395,7 @@
         
         .range-container label {
             min-width: 120px;
+            color: var(--gray);
         }
         
         input[type="range"] {
@@ -392,12 +414,14 @@
             background: var(--primary);
             border-radius: 50%;
             cursor: pointer;
+            border: 2px solid white;
         }
         
         .color-picker {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
+            margin-bottom: 10px;
         }
         
         .color-option {
@@ -407,6 +431,11 @@
             cursor: pointer;
             border: 3px solid transparent;
             transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
         }
         
         .color-option:hover {
@@ -422,6 +451,7 @@
             display: flex;
             gap: 15px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
         
         .editor-btn {
@@ -432,6 +462,11 @@
             transition: all 0.3s;
             border: none;
             font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 120px;
         }
         
         .primary-btn {
@@ -447,6 +482,13 @@
             flex: 1;
         }
         
+        .tertiary-btn {
+            background-color: transparent;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            flex: 1;
+        }
+        
         .primary-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
@@ -455,6 +497,89 @@
         .secondary-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
+        }
+        
+        .tertiary-btn:hover {
+            background-color: rgba(255, 51, 102, 0.1);
+        }
+        
+        /* Font selector */
+        .font-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .font-option {
+            padding: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .font-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .font-option.active {
+            border-color: var(--primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        /* New features panel */
+        .features-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature-btn {
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        
+        .feature-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .feature-btn i {
+            font-size: 20px;
+        }
+        
+        /* Preview section */
+        .preview-section {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .preview-container {
+            display: inline-block;
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        #previewCanvas {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         /* Footer */
@@ -525,6 +650,55 @@
             font-size: 14px;
         }
         
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: var(--dark-light);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--primary);
+            position: relative;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            color: var(--primary);
+            font-size: 24px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .header-container {
@@ -551,8 +725,98 @@
             .section-title h2 {
                 font-size: 28px;
             }
+            
+            .features-panel {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .editor-buttons {
+                flex-direction: column;
+            }
+            
+            .editor-btn {
+                width: 100%;
+            }
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid var(--primary);
+            font-size: 12px;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Loading animation */
+        .loader {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            z-index: 10;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -575,7 +839,7 @@
         <div class="container hero-content">
             <h1>Создавайте мемы как профессионал</h1>
             <p>MEMS TROJAN - лучший онлайн-инструмент для создания мемов. Выбирайте из готовых шаблонов или загружайте свои изображения. Бесплатно и без регистрации!</p>
-            <button class="cta-button" id="startCreating">Начать создавать</button>
+            <button class="cta-button" id="startCreating">Начать создавать <i class="fas fa-arrow-right"></i></button>
         </div>
     </section>
 
@@ -591,7 +855,7 @@
                 <!-- Template 1 -->
                 <div class="meme-card">
                     <div class="meme-image">
-                        <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                        <img src="images/meme1.jpg" alt="Шаблон мема" onerror="this.src='https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'">
                     </div>
                     <div class="meme-info">
                         <h3>Довольный Павел</h3>
@@ -603,7 +867,7 @@
                 <!-- Template 2 -->
                 <div class="meme-card">
                     <div class="meme-image">
-                        <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                        <img src="images/meme2.jpg" alt="Шаблон мема" onerror="this.src='https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'">
                     </div>
                     <div class="meme-info">
                         <h3>Удивлённая кошка</h3>
@@ -615,7 +879,7 @@
                 <!-- Template 3 -->
                 <div class="meme-card">
                     <div class="meme-image">
-                        <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                        <img src="images/meme3.jpg" alt="Шаблон мема" onerror="this.src='https://images.unsplash.com/photo-1561948955-570b270e7c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'">
                     </div>
                     <div class="meme-info">
                         <h3>Кот за компьютером</h3>
@@ -627,7 +891,7 @@
                 <!-- Template 4 -->
                 <div class="meme-card">
                     <div class="meme-image">
-                        <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba14?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                        <img src="images/meme4.jpg" alt="Шаблон мема" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6d03bde4ba14?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'">
                     </div>
                     <div class="meme-info">
                         <h3>Задумчивая кошка</h3>
@@ -639,7 +903,7 @@
                 <!-- Template 5 -->
                 <div class="meme-card">
                     <div class="meme-image">
-                        <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                        <img src="images/meme5.jpg" alt="Шаблон мема" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'">
                     </div>
                     <div class="meme-info">
                         <h3>Серьёзная сова</h3>
@@ -651,7 +915,7 @@
                 <!-- Template 6 -->
                 <div class="meme-card">
                     <div class="meme-image">
-                        <img src="https://images.unsplash.com/photo-1573865528899-657a5d2d4c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Шаблон мема">
+                        <img src="images/meme6.jpg" alt="Шаблон мема" onerror="this.src='https://images.unsplash.com/photo-1573865528899-657a5d2d4c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'">
                     </div>
                     <div class="meme-info">
                         <h3>Смеющийся хаски</h3>
@@ -671,42 +935,125 @@
             <div class="meme-editor" id="memeEditor">
                 <div class="editor-container">
                     <div class="canvas-container">
-                        <canvas id="memeCanvas" width="600" height="500"></canvas>
+                        <div class="loader" id="canvasLoader"></div>
+                        <div class="canvas-wrapper">
+                            <canvas id="memeCanvas" width="600" height="500"></canvas>
+                        </div>
+                        <div class="preview-section" id="previewSection">
+                            <div class="preview-container">
+                                <canvas id="previewCanvas" width="300" height="250"></canvas>
+                            </div>
+                            <p style="color: var(--gray); margin-top: 10px;">Предпросмотр для социальных сетей</p>
+                        </div>
                     </div>
                     
                     <div class="editor-controls">
                         <div class="control-group">
-                            <h4>Текст сверху</h4>
+                            <h4><i class="fas fa-text-height"></i> Текст сверху</h4>
                             <input type="text" class="text-input" id="topText" placeholder="Введите верхний текст...">
                             <div class="range-container">
                                 <label>Размер шрифта:</label>
-                                <input type="range" id="topFontSize" min="10" max="60" value="30">
+                                <input type="range" id="topFontSize" min="10" max="80" value="40">
+                                <span id="topFontSizeValue">40</span>
+                            </div>
+                            <div class="range-container">
+                                <label>Позиция Y:</label>
+                                <input type="range" id="topYPosition" min="10" max="200" value="50">
+                                <span id="topYValue">50</span>
                             </div>
                         </div>
                         
                         <div class="control-group">
-                            <h4>Текст снизу</h4>
+                            <h4><i class="fas fa-text-height"></i> Текст снизу</h4>
                             <input type="text" class="text-input" id="bottomText" placeholder="Введите нижний текст...">
                             <div class="range-container">
                                 <label>Размер шрифта:</label>
-                                <input type="range" id="bottomFontSize" min="10" max="60" value="30">
+                                <input type="range" id="bottomFontSize" min="10" max="80" value="40">
+                                <span id="bottomFontSizeValue">40</span>
+                            </div>
+                            <div class="range-container">
+                                <label>Позиция Y:</label>
+                                <input type="range" id="bottomYPosition" min="300" max="490" value="450">
+                                <span id="bottomYValue">450</span>
                             </div>
                         </div>
                         
                         <div class="control-group">
-                            <h4>Цвет текста</h4>
+                            <h4><i class="fas fa-palette"></i> Цвет текста</h4>
                             <div class="color-picker">
-                                <div class="color-option active" style="background-color: white;" data-color="white"></div>
-                                <div class="color-option" style="background-color: black;" data-color="black"></div>
-                                <div class="color-option" style="background-color: #ff3366;" data-color="#ff3366"></div>
-                                <div class="color-option" style="background-color: #00d4ff;" data-color="#00d4ff"></div>
-                                <div class="color-option" style="background-color: #ffcc00;" data-color="#ffcc00"></div>
+                                <div class="color-option active" style="background-color: white;" data-color="white" title="Белый">
+                                    <i class="fas fa-check" style="display: none;"></i>
+                                </div>
+                                <div class="color-option" style="background-color: black;" data-color="black" title="Чёрный"></div>
+                                <div class="color-option" style="background-color: #ff3366;" data-color="#ff3366" title="Розовый"></div>
+                                <div class="color-option" style="background-color: #00d4ff;" data-color="#00d4ff" title="Голубой"></div>
+                                <div class="color-option" style="background-color: #ffcc00;" data-color="#ffcc00" title="Жёлтый"></div>
+                                <div class="color-option" style="background-color: #00ff88;" data-color="#00ff88" title="Зелёный"></div>
+                                <div class="color-option tooltip" style="background: linear-gradient(45deg, #ff3366, #00d4ff);" data-color="gradient" title="Градиент">
+                                    <i class="fas fa-fill-drip"></i>
+                                    <span class="tooltiptext">Градиентный цвет</span>
+                                </div>
+                            </div>
+                            <div class="range-container">
+                                <label>Цвет обводки:</label>
+                                <input type="color" id="strokeColor" value="#000000" style="width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer;">
+                            </div>
+                            <div class="range-container">
+                                <label>Толщина обводки:</label>
+                                <input type="range" id="strokeWidth" min="0" max="10" value="2">
+                                <span id="strokeWidthValue">2</span>
                             </div>
                         </div>
                         
+                        <div class="control-group">
+                            <h4><i class="fas fa-font"></i> Шрифт</h4>
+                            <div class="font-selector">
+                                <div class="font-option active" data-font="Impact" style="font-family: Impact, sans-serif;">Impact</div>
+                                <div class="font-option" data-font="Arial" style="font-family: Arial, sans-serif;">Arial</div>
+                                <div class="font-option" data-font="Comic Sans MS" style="font-family: 'Comic Sans MS', cursive;">Comic Sans</div>
+                                <div class="font-option" data-font="Georgia" style="font-family: Georgia, serif;">Georgia</div>
+                                <div class="font-option" data-font="Courier New" style="font-family: 'Courier New', monospace;">Courier</div>
+                                <div class="font-option" data-font="Verdana" style="font-family: Verdana, sans-serif;">Verdana</div>
+                            </div>
+                        </div>
+                        
+                        <div class="features-panel">
+                            <button class="feature-btn" id="addTextBtn">
+                                <i class="fas fa-plus"></i>
+                                Добавить текст
+                            </button>
+                            <button class="feature-btn" id="addEmojiBtn">
+                                <i class="fas fa-smile"></i>
+                                Добавить эмодзи
+                            </button>
+                            <button class="feature-btn" id="addStickerBtn">
+                                <i class="fas fa-sticky-note"></i>
+                                Стикеры
+                            </button>
+                            <button class="feature-btn" id="filterBtn">
+                                <i class="fas fa-sliders-h"></i>
+                                Фильтры
+                            </button>
+                            <button class="feature-btn" id="previewBtn">
+                                <i class="fas fa-eye"></i>
+                                Предпросмотр
+                            </button>
+                            <button class="feature-btn" id="shareBtn">
+                                <i class="fas fa-share-alt"></i>
+                                Поделиться
+                            </button>
+                        </div>
+                        
                         <div class="editor-buttons">
-                            <button class="editor-btn primary-btn" id="downloadMeme">Скачать мем</button>
-                            <button class="editor-btn secondary-btn" id="resetEditor">Сбросить</button>
+                            <button class="editor-btn primary-btn" id="downloadMeme">
+                                <i class="fas fa-download"></i> Скачать мем
+                            </button>
+                            <button class="editor-btn secondary-btn" id="saveDraft">
+                                <i class="fas fa-save"></i> Сохранить
+                            </button>
+                            <button class="editor-btn tertiary-btn" id="resetEditor">
+                                <i class="fas fa-redo"></i> Сбросить
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -724,13 +1071,28 @@
                 <p style="color: var(--gray); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
                     Загрузите свою картинку и создайте уникальный мем с помощью нашего редактора
                 </p>
-                <div style="display: inline-block;">
-                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-                    <button class="cta-button" id="uploadButton">Загрузить изображение</button>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 30px;">
+                    <div style="display: inline-block;">
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                        <button class="cta-button" id="uploadButton" style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-upload"></i> Загрузить изображение
+                        </button>
+                    </div>
+                    <button class="cta-button" id="cameraButton" style="background: linear-gradient(90deg, var(--secondary), #ff6699); display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-camera"></i> Сделать фото
+                    </button>
+                    <button class="cta-button" id="urlButton" style="background: linear-gradient(90deg, #00ff88, #00cc66); display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-link"></i> Из URL
+                    </button>
                 </div>
                 <p style="color: var(--gray); margin-top: 15px; font-size: 14px;">
-                    Поддерживаемые форматы: JPG, PNG, GIF
+                    Поддерживаемые форматы: JPG, PNG, GIF, WebP (макс. 10 МБ)
                 </p>
+                <div id="dragDropArea" style="border: 2px dashed var(--primary); border-radius: 15px; padding: 40px; margin-top: 30px; background-color: rgba(0, 212, 255, 0.05);">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 48px; color: var(--primary); margin-bottom: 15px;"></i>
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Перетащите изображение сюда</h4>
+                    <p style="color: var(--gray);">или нажмите на кнопку выше</p>
+                </div>
             </div>
         </section>
     </div>
@@ -756,9 +1118,9 @@
                 <div class="footer-links">
                     <h4>Помощь</h4>
                     <ul>
-                        <li><a href="#">Как создать мем</a></li>
-                        <li><a href="#">Частые вопросы</a></li>
-                        <li><a href="#">Обратная связь</a></li>
+                        <li><a href="#" id="helpLink">Как создать мем</a></li>
+                        <li><a href="#" id="faqLink">Частые вопросы</a></li>
+                        <li><a href="#" id="feedbackLink">Обратная связь</a></li>
                     </ul>
                 </div>
             </div>
@@ -769,34 +1131,116 @@
         </div>
     </footer>
 
+    <!-- Modal для URL изображения -->
+    <div class="modal" id="urlModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Загрузить изображение по URL</h3>
+                <button class="close-modal" id="closeUrlModal">&times;</button>
+            </div>
+            <input type="text" class="text-input" id="imageUrl" placeholder="Введите URL изображения...">
+            <div class="editor-buttons" style="margin-top: 20px;">
+                <button class="editor-btn primary-btn" id="loadUrlImage">Загрузить</button>
+                <button class="editor-btn secondary-btn" id="cancelUrlModal">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal для эмодзи -->
+    <div class="modal" id="emojiModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Выберите эмодзи</h3>
+                <button class="close-modal" id="closeEmojiModal">&times;</button>
+            </div>
+            <div id="emojiContainer" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; max-height: 300px; overflow-y: auto; padding: 10px;">
+                <!-- Эмодзи будут добавлены через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Элементы
             const canvas = document.getElementById('memeCanvas');
             const ctx = canvas.getContext('2d');
+            const previewCanvas = document.getElementById('previewCanvas');
+            const previewCtx = previewCanvas.getContext('2d');
             const memeEditor = document.getElementById('memeEditor');
             const topTextInput = document.getElementById('topText');
             const bottomTextInput = document.getElementById('bottomText');
             const topFontSizeInput = document.getElementById('topFontSize');
             const bottomFontSizeInput = document.getElementById('bottomFontSize');
+            const topFontSizeValue = document.getElementById('topFontSizeValue');
+            const bottomFontSizeValue = document.getElementById('bottomFontSizeValue');
+            const topYPosition = document.getElementById('topYPosition');
+            const bottomYPosition = document.getElementById('bottomYPosition');
+            const topYValue = document.getElementById('topYValue');
+            const bottomYValue = document.getElementById('bottomYValue');
             const colorOptions = document.querySelectorAll('.color-option');
+            const fontOptions = document.querySelectorAll('.font-option');
+            const strokeColorInput = document.getElementById('strokeColor');
+            const strokeWidthInput = document.getElementById('strokeWidth');
+            const strokeWidthValue = document.getElementById('strokeWidthValue');
             const downloadBtn = document.getElementById('downloadMeme');
             const resetBtn = document.getElementById('resetEditor');
             const useTemplateButtons = document.querySelectorAll('.use-template');
             const startCreatingBtn = document.getElementById('startCreating');
             const uploadButton = document.getElementById('uploadButton');
             const imageUpload = document.getElementById('imageUpload');
+            const saveDraftBtn = document.getElementById('saveDraft');
+            const addTextBtn = document.getElementById('addTextBtn');
+            const addEmojiBtn = document.getElementById('addEmojiBtn');
+            const filterBtn = document.getElementById('filterBtn');
+            const previewBtn = document.getElementById('previewBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const previewSection = document.getElementById('previewSection');
+            const canvasLoader = document.getElementById('canvasLoader');
+            const urlButton = document.getElementById('urlButton');
+            const urlModal = document.getElementById('urlModal');
+            const closeUrlModal = document.getElementById('closeUrlModal');
+            const cancelUrlModal = document.getElementById('cancelUrlModal');
+            const loadUrlImage = document.getElementById('loadUrlImage');
+            const imageUrl = document.getElementById('imageUrl');
+            const emojiModal = document.getElementById('emojiModal');
+            const closeEmojiModal = document.getElementById('closeEmojiModal');
+            const emojiContainer = document.getElementById('emojiContainer');
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            const dragDropArea = document.getElementById('dragDropArea');
             
             // Переменные состояния
             let currentImage = null;
             let textColor = 'white';
             let topText = '';
             let bottomText = '';
-            let topFontSize = 30;
-            let bottomFontSize = 30;
+            let topFontSize = 40;
+            let bottomFontSize = 40;
+            let topY = 50;
+            let bottomY = 450;
+            let strokeColor = '#000000';
+            let strokeWidth = 2;
+            let selectedFont = 'Impact';
+            let additionalTexts = [];
+            let currentFilter = 'none';
             
-            // Шаблонные изображения
+            // Шаблонные изображения (из корневой папки images)
             const templateImages = [
+                'images/meme1.jpg',
+                'images/meme2.jpg',
+                'images/meme3.jpg',
+                'images/meme4.jpg',
+                'images/meme5.jpg',
+                'images/meme6.jpg'
+            ];
+            
+            // Резервные изображения (если локальные не найдены)
+            const fallbackImages = [
                 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
                 'https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
                 'https://images.unsplash.com/photo-1561948955-570b270e7c36?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80',
@@ -805,17 +1249,79 @@
                 'https://images.unsplash.com/photo-1573865528899-657a5d2d4c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80'
             ];
             
+            // Эмодзи для выбора
+            const emojis = ['😂', '🤣', '😍', '🥰', '😎', '🤩', '😜', '🤪', '😏', '😒', '😭', '😡', '🤬', '🤯', '🥶', '😱', '🤮', '👻', '💀', '👾', '🤖', '🎃', '💩', '🙈', '🙉', '🙊', '👑', '💎', '🔥', '✨', '🌟', '💥', '💫', '⭐', '🦄', '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵'];
+            
+            // Инициализация эмодзи в модальном окне
+            function initEmojis() {
+                emojiContainer.innerHTML = '';
+                emojis.forEach(emoji => {
+                    const emojiElement = document.createElement('div');
+                    emojiElement.textContent = emoji;
+                    emojiElement.style.fontSize = '24px';
+                    emojiElement.style.textAlign = 'center';
+                    emojiElement.style.padding = '10px';
+                    emojiElement.style.cursor = 'pointer';
+                    emojiElement.style.borderRadius = '8px';
+                    emojiElement.style.transition = 'all 0.2s';
+                    emojiElement.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                    
+                    emojiElement.addEventListener('mouseenter', function() {
+                        this.style.backgroundColor = 'rgba(0, 212, 255, 0.2)';
+                        this.style.transform = 'scale(1.1)';
+                    });
+                    
+                    emojiElement.addEventListener('mouseleave', function() {
+                        this.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                        this.style.transform = 'scale(1)';
+                    });
+                    
+                    emojiElement.addEventListener('click', function() {
+                        // Добавляем эмодзи к нижнему тексту
+                        bottomTextInput.value += emoji;
+                        bottomText = bottomTextInput.value;
+                        drawMeme();
+                        closeModal(emojiModal);
+                        showNotification(`Эмодзи ${emoji} добавлен!`);
+                    });
+                    
+                    emojiContainer.appendChild(emojiElement);
+                });
+            }
+            
             // Загрузка изображения по умолчанию
-            loadImage(templateImages[0]);
+            loadImage(templateImages[0], true);
             
             // Функция загрузки изображения
-            function loadImage(src) {
+            function loadImage(src, isLocal = false) {
+                canvasLoader.style.display = 'block';
+                
                 const img = new Image();
                 img.crossOrigin = 'anonymous';
+                
                 img.onload = function() {
                     currentImage = img;
                     drawMeme();
+                    canvasLoader.style.display = 'none';
                 };
+                
+                img.onerror = function() {
+                    // Если локальное изображение не загрузилось, используем резервное
+                    if (isLocal) {
+                        const templateIndex = templateImages.indexOf(src);
+                        if (templateIndex !== -1 && fallbackImages[templateIndex]) {
+                            img.src = fallbackImages[templateIndex];
+                        } else {
+                            // Используем первое резервное изображение
+                            img.src = fallbackImages[0];
+                            showNotification('Локальное изображение не найдено, используется резервное');
+                        }
+                    } else {
+                        canvasLoader.style.display = 'none';
+                        showNotification('Ошибка загрузки изображения', 'error');
+                    }
+                };
+                
                 img.src = src;
             }
             
@@ -825,6 +1331,9 @@
                 
                 // Очищаем canvas
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Применяем фильтр
+                ctx.filter = currentFilter;
                 
                 // Рассчитываем размеры для отрисовки изображения
                 const aspectRatio = currentImage.width / currentImage.height;
@@ -843,31 +1352,110 @@
                 // Рисуем изображение
                 ctx.drawImage(currentImage, offsetX, offsetY, drawWidth, drawHeight);
                 
+                // Сбрасываем фильтр для текста
+                ctx.filter = 'none';
+                
                 // Настройки текста
-                ctx.fillStyle = textColor;
-                ctx.strokeStyle = 'black';
-                ctx.lineWidth = 2;
                 ctx.textAlign = 'center';
+                ctx.lineJoin = 'round';
                 
                 // Верхний текст
                 if (topText) {
-                    ctx.font = `bold ${topFontSize}px Arial`;
+                    ctx.font = `bold ${topFontSize}px ${selectedFont}`;
                     ctx.textBaseline = 'top';
                     
-                    // Добавляем обводку и заливку текста
-                    ctx.strokeText(topText, canvas.width / 2, 10);
-                    ctx.fillText(topText, canvas.width / 2, 10);
+                    // Применяем цвет текста
+                    if (textColor === 'gradient') {
+                        const gradient = ctx.createLinearGradient(0, topY - 20, canvas.width, topY + 20);
+                        gradient.addColorStop(0, '#ff3366');
+                        gradient.addColorStop(1, '#00d4ff');
+                        ctx.fillStyle = gradient;
+                    } else {
+                        ctx.fillStyle = textColor;
+                    }
+                    
+                    // Добавляем обводку текста
+                    if (strokeWidth > 0) {
+                        ctx.strokeStyle = strokeColor;
+                        ctx.lineWidth = strokeWidth;
+                        ctx.strokeText(topText, canvas.width / 2, topY);
+                    }
+                    
+                    // Добавляем заливку текста
+                    ctx.fillText(topText, canvas.width / 2, topY);
                 }
                 
                 // Нижний текст
                 if (bottomText) {
-                    ctx.font = `bold ${bottomFontSize}px Arial`;
+                    ctx.font = `bold ${bottomFontSize}px ${selectedFont}`;
                     ctx.textBaseline = 'bottom';
                     
-                    // Добавляем обводку и заливку текста
-                    ctx.strokeText(bottomText, canvas.width / 2, canvas.height - 10);
-                    ctx.fillText(bottomText, canvas.width / 2, canvas.height - 10);
+                    // Применяем цвет текста
+                    if (textColor === 'gradient') {
+                        const gradient = ctx.createLinearGradient(0, bottomY - 20, canvas.width, bottomY + 20);
+                        gradient.addColorStop(0, '#ff3366');
+                        gradient.addColorStop(1, '#00d4ff');
+                        ctx.fillStyle = gradient;
+                    } else {
+                        ctx.fillStyle = textColor;
+                    }
+                    
+                    // Добавляем обводку текста
+                    if (strokeWidth > 0) {
+                        ctx.strokeStyle = strokeColor;
+                        ctx.lineWidth = strokeWidth;
+                        ctx.strokeText(bottomText, canvas.width / 2, bottomY);
+                    }
+                    
+                    // Добавляем заливку текста
+                    ctx.fillText(bottomText, canvas.width / 2, bottomY);
                 }
+                
+                // Дополнительные тексты
+                additionalTexts.forEach(textObj => {
+                    ctx.font = `bold ${textObj.size}px ${selectedFont}`;
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = textObj.color;
+                    
+                    if (textObj.strokeWidth > 0) {
+                        ctx.strokeStyle = textObj.strokeColor;
+                        ctx.lineWidth = textObj.strokeWidth;
+                        ctx.strokeText(textObj.text, textObj.x, textObj.y);
+                    }
+                    
+                    ctx.fillText(textObj.text, textObj.x, textObj.y);
+                });
+                
+                // Обновляем предпросмотр
+                updatePreview();
+            }
+            
+            // Обновление предпросмотра
+            function updatePreview() {
+                const scale = 0.5;
+                previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+                previewCtx.drawImage(canvas, 0, 0, previewCanvas.width, previewCanvas.height);
+            }
+            
+            // Показать уведомление
+            function showNotification(message, type = 'success') {
+                notificationText.textContent = message;
+                notification.style.backgroundColor = type === 'error' ? 'var(--secondary)' : 'var(--primary)';
+                notification.style.display = 'block';
+                
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+            
+            // Закрыть модальное окно
+            function closeModal(modal) {
+                modal.style.display = 'none';
+            }
+            
+            // Открыть модальное окно
+            function openModal(modal) {
+                modal.style.display = 'flex';
             }
             
             // Обработчики событий для текста
@@ -884,56 +1472,155 @@
             // Обработчики событий для размера шрифта
             topFontSizeInput.addEventListener('input', function() {
                 topFontSize = parseInt(this.value);
+                topFontSizeValue.textContent = topFontSize;
                 drawMeme();
             });
             
             bottomFontSizeInput.addEventListener('input', function() {
                 bottomFontSize = parseInt(this.value);
+                bottomFontSizeValue.textContent = bottomFontSize;
+                drawMeme();
+            });
+            
+            // Обработчики событий для позиции Y
+            topYPosition.addEventListener('input', function() {
+                topY = parseInt(this.value);
+                topYValue.textContent = topY;
+                drawMeme();
+            });
+            
+            bottomYPosition.addEventListener('input', function() {
+                bottomY = parseInt(this.value);
+                bottomYValue.textContent = bottomY;
                 drawMeme();
             });
             
             // Обработчики событий для выбора цвета
             colorOptions.forEach(option => {
                 option.addEventListener('click', function() {
-                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    colorOptions.forEach(opt => {
+                        opt.classList.remove('active');
+                        const icon = opt.querySelector('i');
+                        if (icon) icon.style.display = 'none';
+                    });
+                    
                     this.classList.add('active');
+                    const icon = this.querySelector('i');
+                    if (icon) icon.style.display = 'block';
+                    
                     textColor = this.getAttribute('data-color');
                     drawMeme();
                 });
+            });
+            
+            // Обработчики событий для выбора шрифта
+            fontOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    fontOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedFont = this.getAttribute('data-font');
+                    drawMeme();
+                });
+            });
+            
+            // Обработчики событий для обводки
+            strokeColorInput.addEventListener('input', function() {
+                strokeColor = this.value;
+                drawMeme();
+            });
+            
+            strokeWidthInput.addEventListener('input', function() {
+                strokeWidth = parseInt(this.value);
+                strokeWidthValue.textContent = strokeWidth;
+                drawMeme();
             });
             
             // Сброс редактора
             resetBtn.addEventListener('click', function() {
                 topTextInput.value = '';
                 bottomTextInput.value = '';
-                topFontSizeInput.value = 30;
-                bottomFontSizeInput.value = 30;
+                topFontSizeInput.value = 40;
+                bottomFontSizeInput.value = 40;
+                topYPosition.value = 50;
+                bottomYPosition.value = 450;
+                strokeWidthInput.value = 2;
+                strokeColorInput.value = '#000000';
                 
-                colorOptions.forEach(opt => opt.classList.remove('active'));
+                colorOptions.forEach(opt => {
+                    opt.classList.remove('active');
+                    const icon = opt.querySelector('i');
+                    if (icon) icon.style.display = 'none';
+                });
                 document.querySelector('.color-option[data-color="white"]').classList.add('active');
+                document.querySelector('.color-option[data-color="white"] i').style.display = 'block';
+                
+                fontOptions.forEach(opt => opt.classList.remove('active'));
+                document.querySelector('.font-option[data-font="Impact"]').classList.add('active');
                 
                 topText = '';
                 bottomText = '';
-                topFontSize = 30;
-                bottomFontSize = 30;
+                topFontSize = 40;
+                bottomFontSize = 40;
+                topY = 50;
+                bottomY = 450;
+                strokeWidth = 2;
+                strokeColor = '#000000';
                 textColor = 'white';
+                selectedFont = 'Impact';
+                additionalTexts = [];
+                currentFilter = 'none';
                 
                 drawMeme();
+                showNotification('Редактор сброшен');
             });
             
             // Скачивание мема
             downloadBtn.addEventListener('click', function() {
                 const link = document.createElement('a');
-                link.download = 'mems-trojan-meme.png';
+                link.download = `mems-trojan-meme-${Date.now()}.png`;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
+                showNotification('Мем успешно скачан!');
             });
+            
+            // Сохранение черновика
+            saveDraftBtn.addEventListener('click', function() {
+                const memeData = {
+                    image: currentImage.src,
+                    topText,
+                    bottomText,
+                    topFontSize,
+                    bottomFontSize,
+                    topY,
+                    bottomY,
+                    textColor,
+                    strokeColor,
+                    strokeWidth,
+                    selectedFont,
+                    filter: currentFilter,
+                    timestamp: Date.now()
+                };
+                
+                localStorage.setItem('memsTrojanDraft', JSON.stringify(memeData));
+                showNotification('Черновик сохранен в браузере');
+            });
+            
+            // Попытка загрузить черновик
+            const savedDraft = localStorage.getItem('memsTrojanDraft');
+            if (savedDraft) {
+                try {
+                    const draft = JSON.parse(savedDraft);
+                    // Можно добавить кнопку "Загрузить черновик" или загружать автоматически
+                } catch (e) {
+                    console.error('Ошибка загрузки черновика:', e);
+                }
+            }
             
             // Использование шаблона
             useTemplateButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const templateIndex = parseInt(this.getAttribute('data-template')) - 1;
-                    loadImage(templateImages[templateIndex]);
+                    loadImage(templateImages[templateIndex], true);
                     
                     // Показываем редактор и прокручиваем к нему
                     memeEditor.classList.add('editor-active');
@@ -944,6 +1631,8 @@
                     bottomTextInput.value = '';
                     topText = '';
                     bottomText = '';
+                    
+                    showNotification(`Шаблон "${this.closest('.meme-card').querySelector('h3').textContent}" загружен`);
                 });
             });
             
@@ -960,13 +1649,181 @@
             
             imageUpload.addEventListener('change', function(e) {
                 if (e.target.files && e.target.files[0]) {
+                    // Проверка размера файла (макс. 10 МБ)
+                    if (e.target.files[0].size > 10 * 1024 * 1024) {
+                        showNotification('Файл слишком большой (макс. 10 МБ)', 'error');
+                        return;
+                    }
+                    
                     const reader = new FileReader();
                     reader.onload = function(event) {
                         loadImage(event.target.result);
                         memeEditor.classList.add('editor-active');
                         memeEditor.scrollIntoView({ behavior: 'smooth' });
+                        showNotification('Изображение успешно загружено');
                     };
                     reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            
+            // Drag and drop для загрузки изображений
+            dragDropArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.backgroundColor = 'rgba(0, 212, 255, 0.1)';
+                this.style.borderColor = 'var(--secondary)';
+            });
+            
+            dragDropArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.style.backgroundColor = 'rgba(0, 212, 255, 0.05)';
+                this.style.borderColor = 'var(--primary)';
+            });
+            
+            dragDropArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.backgroundColor = 'rgba(0, 212, 255, 0.05)';
+                this.style.borderColor = 'var(--primary)';
+                
+                if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    const file = e.dataTransfer.files[0];
+                    
+                    // Проверка типа файла
+                    if (!file.type.match('image.*')) {
+                        showNotification('Пожалуйста, загрузите изображение', 'error');
+                        return;
+                    }
+                    
+                    // Проверка размера файла
+                    if (file.size > 10 * 1024 * 1024) {
+                        showNotification('Файл слишком большой (макс. 10 МБ)', 'error');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        loadImage(event.target.result);
+                        memeEditor.classList.add('editor-active');
+                        memeEditor.scrollIntoView({ behavior: 'smooth' });
+                        showNotification('Изображение успешно загружено через Drag & Drop');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Загрузка по URL
+            urlButton.addEventListener('click', function() {
+                openModal(urlModal);
+            });
+            
+            closeUrlModal.addEventListener('click', function() {
+                closeModal(urlModal);
+            });
+            
+            cancelUrlModal.addEventListener('click', function() {
+                closeModal(urlModal);
+            });
+            
+            loadUrlImage.addEventListener('click', function() {
+                const url = imageUrl.value.trim();
+                if (!url) {
+                    showNotification('Введите URL изображения', 'error');
+                    return;
+                }
+                
+                // Простая проверка URL
+                if (!url.match(/^https?:\/\/.+\/.+\.(jpg|jpeg|png|gif|webp)/i)) {
+                    showNotification('Введите корректный URL изображения', 'error');
+                    return;
+                }
+                
+                loadImage(url);
+                closeModal(urlModal);
+                memeEditor.classList.add('editor-active');
+                memeEditor.scrollIntoView({ behavior: 'smooth' });
+                imageUrl.value = '';
+                showNotification('Изображение загружается по URL...');
+            });
+            
+            // Добавление эмодзи
+            addEmojiBtn.addEventListener('click', function() {
+                initEmojis();
+                openModal(emojiModal);
+            });
+            
+            closeEmojiModal.addEventListener('click', function() {
+                closeModal(emojiModal);
+            });
+            
+            // Добавление текста
+            addTextBtn.addEventListener('click', function() {
+                const newText = prompt('Введите дополнительный текст:', 'Новый текст');
+                if (newText) {
+                    const textObj = {
+                        text: newText,
+                        size: 30,
+                        color: textColor,
+                        strokeColor: strokeColor,
+                        strokeWidth: strokeWidth,
+                        x: canvas.width / 2,
+                        y: canvas.height / 2
+                    };
+                    
+                    additionalTexts.push(textObj);
+                    drawMeme();
+                    showNotification('Дополнительный текст добавлен');
+                }
+            });
+            
+            // Фильтры
+            filterBtn.addEventListener('click', function() {
+                const filters = {
+                    'none': 'Без фильтра',
+                    'grayscale(100%)': 'Черно-белый',
+                    'sepia(100%)': 'Сепия',
+                    'invert(100%)': 'Инвертированный',
+                    'hue-rotate(90deg)': 'Цветовой сдвиг',
+                    'contrast(200%)': 'Высокая контрастность',
+                    'brightness(150%)': 'Ярче',
+                    'saturate(200%)': 'Насыщеннее'
+                };
+                
+                const filterNames = Object.keys(filters);
+                const currentIndex = filterNames.indexOf(currentFilter);
+                const nextIndex = (currentIndex + 1) % filterNames.length;
+                
+                currentFilter = filterNames[nextIndex];
+                drawMeme();
+                showNotification(`Фильтр: ${filters[currentFilter]}`);
+            });
+            
+            // Предпросмотр
+            previewBtn.addEventListener('click', function() {
+                if (previewSection.style.display === 'none' || previewSection.style.display === '') {
+                    previewSection.style.display = 'block';
+                    previewBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Скрыть предпросмотр';
+                } else {
+                    previewSection.style.display = 'none';
+                    previewBtn.innerHTML = '<i class="fas fa-eye"></i> Предпросмотр';
+                }
+            });
+            
+            // Поделиться
+            shareBtn.addEventListener('click', function() {
+                if (navigator.share) {
+                    canvas.toBlob(function(blob) {
+                        const file = new File([blob], 'meme.png', { type: 'image/png' });
+                        
+                        navigator.share({
+                            title: 'Мой мем из MEMS TROJAN',
+                            text: 'Посмотрите мой мем!',
+                            files: [file]
+                        }).catch(error => {
+                            console.log('Ошибка при использовании Web Share API:', error);
+                            showNotification('Мем готов к скачиванию!', 'success');
+                        });
+                    });
+                } else {
+                    showNotification('Нажмите "Скачать мем" и поделитесь файлом вручную', 'success');
                 }
             });
             
@@ -984,6 +1841,27 @@
                     }
                 });
             });
+            
+            // Помощь и обратная связь
+            document.getElementById('helpLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification('Откройте редактор и начните добавлять текст к изображению!');
+            });
+            
+            document.getElementById('faqLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification('Частые вопросы: 1) Как сохранить - кнопка "Скачать мем", 2) Как сбросить - кнопка "Сбросить"');
+            });
+            
+            document.getElementById('feedbackLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                const email = 'feedback@memstrojan.com';
+                showNotification(`Отправьте письмо на ${email} с вашими предложениями!`);
+            });
+            
+            // Инициализация
+            initEmojis();
+            drawMeme();
         });
     </script>
 </body>
