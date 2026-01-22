@@ -972,7 +972,6 @@
                         <div class="editor-tabs" id="editorTabs">
                             <button class="editor-tab active" data-panel="text">Текст</button>
                             <button class="editor-tab" data-panel="effects">Эффекты</button>
-                            <button class="editor-tab" data-panel="branding">Брендинг</button>
                         </div>
                         
                         <!-- Text Panel -->
@@ -1096,48 +1095,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Branding Panel -->
-                        <div class="editor-panel" id="brandingPanel">
-                            <div class="control-group branding-settings">
-                                <h4><i class="fas fa-crown"></i> Кастомизация бренда</h4>
-                                <p style="color: var(--gray); font-size: 14px; margin-bottom: 15px;">
-                                    Настройте логотип и цвета сайта под ваш бренд
-                                </p>
-                                
-                                <div class="range-container" style="margin-bottom: 15px;">
-                                    <label>Загрузить логотип:</label>
-                                    <input type="file" id="brandLogoUpload" accept="image/*" style="display: none;">
-                                    <button class="editor-btn secondary-btn" id="uploadBrandLogoBtn" style="padding: 8px 15px;">
-                                        <i class="fas fa-upload"></i> Выбрать файл
-                                    </button>
-                                </div>
-                                
-                                <div class="range-container" style="margin-bottom: 15px;">
-                                    <label>Название бренда:</label>
-                                    <input type="text" class="text-input" id="brandName" placeholder="Введите название бренда">
-                                </div>
-                                
-                                <div class="range-container" style="margin-bottom: 15px;">
-                                    <label>Цветовая схема:</label>
-                                    <div class="brand-color-picker">
-                                        <div class="brand-color active" style="background: linear-gradient(135deg, #00d4ff, #ff3366);" data-theme="default"></div>
-                                        <div class="brand-color" style="background: linear-gradient(135deg, #ff3366, #ff9966);" data-theme="warm"></div>
-                                        <div class="brand-color" style="background: linear-gradient(135deg, #00ff88, #00ccff);" data-theme="cool"></div>
-                                        <div class="brand-color" style="background: linear-gradient(135deg, #9966ff, #ff66cc);" data-theme="purple"></div>
-                                        <div class="brand-color" style="background: linear-gradient(135deg, #ffcc00, #ff6600);" data-theme="orange"></div>
-                                    </div>
-                                </div>
-                                
-                                <button class="editor-btn primary-btn" id="applyBranding" style="margin-top: 10px;">
-                                    <i class="fas fa-check"></i> Применить брендинг
-                                </button>
-                                <button class="editor-btn tertiary-btn" id="resetBranding" style="margin-top: 10px;">
-                                    <i class="fas fa-undo"></i> Сбросить
-                                </button>
-                            </div>
-                        </div>
-                        
                         <div class="editor-buttons">
                             <button class="editor-btn primary-btn" id="downloadMeme">
                                 <i class="fas fa-download"></i> Скачать мем
@@ -1276,7 +1233,7 @@
             const popularTemplates = [
                 // Животные (10)
                 {id: 1, name: "Счастливый пес", category: "animals", description: "Радостная собака виляет хвостом", image: "images/meme1.jpg"},
-                {id: 2, name: "Удивлённый кот", category: "animals", description: "Кот с большими глазами от удивления", image: "images/meme2.jpg"},
+                {id: 2, name: "Удивлённый кот", category: "animals", description: "Кот с большими глазами от удивления", image: "https://cs19.pikabu.ru/s/2026/01/09/18/qw5uwbtu.webp"},
                 {id: 3, name: "Кот за ноутбуком", category: "animals", description: "Серьёзный кот работает за компьютером", image: "images/meme3.jpg"},
                 {id: 4, name: "Философская кошка", category: "animals", description: "Кошка с задумчивым взглядом", image: "images/meme4.jpg"},
                 {id: 5, name: "Мудрая сова", category: "animals", description: "Сова с пронзительным взглядом", image: "images/meme5.jpg"},
