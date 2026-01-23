@@ -83,6 +83,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 10px;
+            display: none;
         }
         
         .logo-icon.has-custom-logo img {
@@ -917,7 +918,7 @@
             
             <div class="template-categories" id="popularCategories">
                 <button class="category-btn active" data-category="all">Все</button>
-                <button class="category-btn" data-category="funny">Смешные</button>
+                <button class="category-btn" data-category="animals">Животные</button>
                 <button class="category-btn" data-category="reactions">Реакции</button>
                 <button class="category-btn" data-category="classic">Классика</button>
             </div>
@@ -1204,9 +1205,8 @@
             
             // ===================== ИНИЦИАЛИЗАЦИЯ ШАБЛОНОВ =====================
             
-            // Массив из популярных мемов с использованием placeholder изображений
+            // Массив из 25 популярных мемов (все из папки images)
             const popularTemplates = [
-                
                 // Животные (10)
                {id: 1, name: "Счастливый пес", category: "animals", description: "Кошачья поддержка, image: "images/meme1.jpg"},
                {id: 2, name: "Удивлённый кот", category: "animals", description: "ПОВ январь 2026", image: "https://cs19.pikabu.ru/s/2026/01/09/18/qw5uwbtu.webp"},
@@ -1219,19 +1219,24 @@
                {id: 9, name: "Ленивый коала", category: "animals", description: "Git удалили", image: "https://cs18.pikabu.ru/s/2026/01/22/09/5qbrcjqr.webp"},
                {id: 10, name: "Хитрый лис", category: "animals", description: "МАМА Я ПРЕДПРЕНИМАТЕЛЬ", image: "https://cs20.pikabu.ru/s/2026/01/22/05/2ed2wb3u.webp"},
                 
-                // Реакции (6)
-                {id: 11, name: "Злой начальник", category: "reactions", description: "Реакция на плохую работу", image: "https://via.placeholder.com/400x300/00ff88/ffffff?text=REACTION+3"},
-                {id: 12, name: "Саркастичные аплодисменты", category: "reactions", description: "Аплодисменты с сарказмом", image: "https://via.placeholder.com/400x300/ffcc00/000000?text=REACTION+4"},
-                {id: 13, name: "Внезапное прозрение", category: "reactions", description: "Момент озарения и понимания", image: "https://via.placeholder.com/400x300/9c27b0/ffffff?text=REACTION+5"},
-                {id: 14, name: "Смущённое лицо", category: "reactions", description: "Когда попадаешь в неловкую ситуацию", image: "https://via.placeholder.com/400x300/2196f3/ffffff?text=REACTION+6"},
+                // Реакции (8)
+                {id: 11, name: "Шок и недоверие", category: "reactions", description: "Реакция на неожиданные новости", image: "images/meme11.jpg"},
+                {id: 12, name: "Лицо ладони", category: "reactions", description: "Когда ситуация безнадёжна", image: "images/meme12.jpg"},
+                {id: 13, name: "Злой начальник", category: "reactions", description: "Реакция на плохую работу", image: "images/meme13.jpg"},
+                {id: 14, name: "Саркастичные аплодисменты", category: "reactions", description: "Аплодисменты с сарказмом", image: "images/meme14.jpg"},
+                {id: 15, name: "Внезапное прозрение", category: "reactions", description: "Момент озарения и понимания", image: "images/meme15.jpg"},
+                {id: 16, name: "Счастливые слезы", category: "reactions", description: "Слёзы радости и счастья", image: "images/meme16.jpg"},
+                {id: 17, name: "Смущённое лицо", category: "reactions", description: "Когда попадаешь в неловкую ситуацию", image: "images/meme17.jpg"},
+                {id: 18, name: "Злорадная улыбка", category: "reactions", description: "Когда у конкурента проблемы", image: "images/meme18.jpg"},
                 
-                // Классика (6)
-                {id: 15, name: "Довольный Павел", category: "classic", description: "Классический мем с улыбающимся мужчиной", image: "https://via.placeholder.com/400x300/00d4ff/ffffff?text=CLASSIC+1"},
-                {id: 16, name: "Капитан Америка", category: "classic", description: "Я понял эту ссылку", image: "https://via.placeholder.com/400x300/ff3366/ffffff?text=CLASSIC+2"},
-                {id: 17, name: "Социально Awkward", category: "classic", description: "Социально неловкий пингвин", image: "https://via.placeholder.com/400x300/00ff88/ffffff?text=CLASSIC+3"},
-                {id: 18, name: "Параноидальный попугай", category: "classic", description: "Они наблюдают за мной", image: "https://via.placeholder.com/400x300/ffcc00/000000?text=CLASSIC+4"},
-                {id: 19, name: "Счастливые слезы", category: "classic", description: "Слёзы радости и счастья", image: "https://via.placeholder.com/400x300/9c27b0/ffffff?text=CLASSIC+5"},
-                {id: 20, name: "Злорадная улыбка", category: "classic", description: "Когда у конкурента проблемы", image: "https://via.placeholder.com/400x300/2196f3/ffffff?text=CLASSIC+6"}
+                // Классика (7)
+                {id: 19, name: "Довольный Павел", category: "classic", description: "Классический мем с улыбающимся мужчиной", image: "images/meme19.jpg"},
+                {id: 20, name: "Успешный ребёнок", category: "classic", description: "Мальчик с гордым выражением лица", image: "images/meme20.jpg"},
+                {id: 21, name: "Злой малыш", category: "classic", description: "Сердитый ребёнок скрестил руки", image: "images/meme21.jpg"},
+                {id: 22, name: "Капитан Америка", category: "classic", description: "Я понял эту ссылку", image: "images/meme22.jpg"},
+                {id: 23, name: "Социально Awkward", category: "classic", description: "Социально неловкий пингвин", image: "images/meme23.jpg"},
+                {id: 24, name: "Параноидальный попугай", category: "classic", description: "Они наблюдают за мной", image: "images/meme24.jpg"},
+                {id: 25, name: "Филозофский ёж", category: "classic", description: "Ёж с глубокомысленным видом", image: "images/meme25.jpg"}
             ];
             
             // ===================== ИНИЦИАЛИЗАЦИЯ ЭЛЕМЕНТОВ =====================
@@ -1417,7 +1422,7 @@
                     memeCard.innerHTML = `
                         <div class="meme-image">
                             <img src="${template.image}" alt="${template.name}" 
-                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/666666/ffffff?text=Ошибка+загрузки';">
+                                 onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                         </div>
                         <div class="meme-info">
                             <h3>${template.name}</h3>
@@ -1448,42 +1453,19 @@
             
             // Инициализация при загрузке страницы
             function init() {
-                // Загружаем логотип (можно использовать placeholder или ваш логотип)
-                const logoPaths = [
-                    './images/logo.png',
-                    './images/logo.jpg',
-                    './images/logo.svg',
-                    './images/logo.webp',
-                    'https://via.placeholder.com/50/00d4ff/0a0e17?text=MT'
-                ];
-                
-                let logoIndex = 0;
-                
-                function tryLoadLogo() {
-                    if (logoIndex >= logoPaths.length) {
-                        console.log('Логотип не найден');
-                        return;
-                    }
-                    
-                    const logoPath = logoPaths[logoIndex];
-                    const logoImg = new Image();
-                    
-                    logoImg.onload = function() {
-                        customLogo.src = logoPath;
-                        customLogo.style.display = 'block';
-                        logoIcon.classList.add('has-custom-logo');
-                        console.log('Логотип загружен:', logoPath);
-                    };
-                    
-                    logoImg.onerror = function() {
-                        logoIndex++;
-                        tryLoadLogo();
-                    };
-                    
-                    logoImg.src = logoPath;
-                }
-                
-                tryLoadLogo();
+                // Пробуем загрузить логотип по умолчанию из папки images
+                const defaultLogo = 'images/logo.png';
+                const logoImg = new Image();
+                logoImg.onload = function() {
+                    customLogo.src = defaultLogo;
+                    customLogo.style.display = 'block';
+                    logoIcon.classList.add('has-custom-logo');
+                };
+                logoImg.onerror = function() {
+                    // Если логотипа нет, используем стандартный
+                    console.log('Логотип не найден, используется стандартный');
+                };
+                logoImg.src = defaultLogo;
                 
                 // Загружаем первый шаблон
                 if (popularTemplates.length > 0) {
@@ -1767,6 +1749,12 @@
                     return;
                 }
                 
+                // Простая проверка URL
+                if (!url.match(/^https?:\/\/.+\/.+\.(jpg|jpeg|png|gif|webp)/i)) {
+                    showNotification('Введите корректный URL изображения', 'error');
+                    return;
+                }
+                
                 loadImage(url);
                 document.getElementById('urlModal').style.display = 'none';
                 memeEditor.classList.add('editor-active');
@@ -1790,7 +1778,7 @@
                     
                     const categoryNames = {
                         'all': 'Все',
-                        'funny': 'Смешные',
+                        'animals': 'Животные',
                         'reactions': 'Реакции',
                         'classic': 'Классика'
                     };
