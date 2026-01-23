@@ -238,7 +238,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
         
         .meme-card {
@@ -848,34 +848,11 @@
             }
         }
         
-        /* Template categories */
-        .template-categories {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .category-btn {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .category-btn:hover {
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--primary);
-        }
-        
-        .category-btn.active {
-            background: var(--primary);
-            color: var(--dark);
-            border-color: var(--primary);
+        /* Load more button */
+        .load-more-container {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 60px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -915,15 +892,12 @@
                 <h2>Популярные шаблоны мемов</h2>
             </div>
             
-            <div class="template-categories" id="popularCategories">
-                <button class="category-btn active" data-category="all">Все</button>
-                <button class="category-btn" data-category="funny">Смешные</button>
-                <button class="category-btn" data-category="reactions">Реакции</button>
-                <button class="category-btn" data-category="classic">Классика</button>
-            </div>
-            
             <div class="meme-templates" id="popularTemplates">
                 <!-- Templates will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="load-more-container">
+                <button class="cta-button" id="loadMoreBtn">Загрузить еще</button>
             </div>
         </section>
         
@@ -1200,37 +1174,34 @@
                 scale: 1
             };
             
-            let selectedTemplateCategory = 'all';
+            // Пагинация
+            let currentPage = 1;
+            const memesPerPage = 8;
             
             // ===================== ИНИЦИАЛИЗАЦИЯ ШАБЛОНОВ =====================
             
-            // Массив из популярных мемов с использованием placeholder изображений
+            // Массив из популярных мемов из интернета с исправленными ID
             const popularTemplates = [
-                // Смешные (8)
-               {id: 2, name: "Удивлённый кот", category: "animals", description: "ПОВ январь 2026", image: "https://cs19.pikabu.ru/s/2026/01/09/18/qw5uwbtu.webp"},
-               {id: 3, name: "Кот за ноутбуком", category: "animals", description: "ПОВ MEMS TROAJAN", image: "https://cs16.pikabu.ru/s/2026/01/01/14/bjjcj2g6.webp"},
-               {id: 4, name: "Философская кошка", category: "animals", description: "0_0 с задумчивым взглядом", image: "https://cs15.pikabu.ru/post_img/2024/08/02/8/1722603600152288530.webp"},
-               {id: 5, name: "Мудрая сова", category: "animals", description: "БАЗАВЫЙ МИНИМУМ", image: "https://cs17.pikabu.ru/s/2026/01/22/18/nfbfkmw6.webp"},
-               {id: 6, name: "Смеющийся хаски", category: "animals", description: "Настройки каждого родителя", image: "https://cs16.pikabu.ru/s/2026/01/22/15/52aci7mn.webp"},
-               {id: 7, name: "Сердитый хомяк", category: "animals", description: "Да я успею...", image: "https://cs17.pikabu.ru/s/2026/01/22/12/yhnflgxj.webp"},
-               {id: 8, name: "Подмигивающий дельфин", category: "animals", description: "Я перехотел", image: "https://cs17.pikabu.ru/s/2026/01/22/09/3llflg2i.webp"},
-               {id: 9, name: "Ленивый коала", category: "animals", description: "Git удалили", image: "https://cs18.pikabu.ru/s/2026/01/22/09/5qbrcjqr.webp"},
-               {id: 10, name: "Хитрый лис", category: "animals", description: "МАМА Я ПРЕДПРЕНИМАТЕЛЬ", image: "https://cs20.pikabu.ru/s/2026/01/22/05/2ed2wb3u.webp"},
-                // Реакции (6)
-                {id: 9, name: "Шок и недоверие", category: "reactions", description: "Реакция на неожиданные новости", image: "https://via.placeholder.com/400x300/00d4ff/ffffff?text=REACTION+1"},
-                {id: 10, name: "Лицо ладони", category: "reactions", description: "Когда ситуация безнадёжна", image: "https://via.placeholder.com/400x300/ff3366/ffffff?text=REACTION+2"},
-                {id: 11, name: "Злой начальник", category: "reactions", description: "Реакция на плохую работу", image: "https://via.placeholder.com/400x300/00ff88/ffffff?text=REACTION+3"},
-                {id: 12, name: "Саркастичные аплодисменты", category: "reactions", description: "Аплодисменты с сарказмом", image: "https://via.placeholder.com/400x300/ffcc00/000000?text=REACTION+4"},
-                {id: 13, name: "Внезапное прозрение", category: "reactions", description: "Момент озарения и понимания", image: "https://via.placeholder.com/400x300/9c27b0/ffffff?text=REACTION+5"},
-                {id: 14, name: "Смущённое лицо", category: "reactions", description: "Когда попадаешь в неловкую ситуацию", image: "https://via.placeholder.com/400x300/2196f3/ffffff?text=REACTION+6"},
-                
-                // Классика (6)
-                {id: 15, name: "Довольный Павел", category: "classic", description: "Классический мем с улыбающимся мужчиной", image: "https://via.placeholder.com/400x300/00d4ff/ffffff?text=CLASSIC+1"},
-                {id: 16, name: "Капитан Америка", category: "classic", description: "Я понял эту ссылку", image: "https://via.placeholder.com/400x300/ff3366/ffffff?text=CLASSIC+2"},
-                {id: 17, name: "Социально Awkward", category: "classic", description: "Социально неловкий пингвин", image: "https://via.placeholder.com/400x300/00ff88/ffffff?text=CLASSIC+3"},
-                {id: 18, name: "Параноидальный попугай", category: "classic", description: "Они наблюдают за мной", image: "https://via.placeholder.com/400x300/ffcc00/000000?text=CLASSIC+4"},
-                {id: 19, name: "Счастливые слезы", category: "classic", description: "Слёзы радости и счастья", image: "https://via.placeholder.com/400x300/9c27b0/ffffff?text=CLASSIC+5"},
-                {id: 20, name: "Злорадная улыбка", category: "classic", description: "Когда у конкурента проблемы", image: "https://via.placeholder.com/400x300/2196f3/ffffff?text=CLASSIC+6"}
+                {id: 1, name: "Удивлённый кот", description: "ПОВ январь 2026", image: "https://cs19.pikabu.ru/s/2026/01/09/18/qw5uwbtu.webp"},
+                {id: 2, name: "Кот за ноутбуком", description: "ПОВ MEMS TROAJAN", image: "https://cs16.pikabu.ru/s/2026/01/01/14/bjjcj2g6.webp"},
+                {id: 3, name: "Философская кошка", description: "0_0 с задумчивым взглядом", image: "https://cs15.pikabu.ru/post_img/2024/08/02/8/1722603600152288530.webp"},
+                {id: 4, name: "Мудрая сова", description: "БАЗАВЫЙ МИНИМУМ", image: "https://cs17.pikabu.ru/s/2026/01/22/18/nfbfkmw6.webp"},
+                {id: 5, name: "Смеющийся хаски", description: "Настройки каждого родителя", image: "https://cs16.pikabu.ru/s/2026/01/22/15/52aci7mn.webp"},
+                {id: 6, name: "Сердитый хомяк", description: "Да я успею...", image: "https://cs17.pikabu.ru/s/2026/01/22/12/yhnflgxj.webp"},
+                {id: 7, name: "Подмигивающий дельфин", description: "Я перехотел", image: "https://cs17.pikabu.ru/s/2026/01/22/09/3llflg2i.webp"},
+                {id: 8, name: "Ленивый коала", description: "Git удалили", image: "https://cs18.pikabu.ru/s/2026/01/22/09/5qbrcjqr.webp"},
+                {id: 9, name: "Хитрый лис", description: "МАМА Я ПРЕДПРЕНИМАТЕЛЬ", image: "https://cs20.pikabu.ru/s/2026/01/22/05/2ed2wb3u.webp"},
+                {id: 10, name: "Довольный Павел", description: "Классический мем с улыбающимся мужчиной", image: "https://via.placeholder.com/400x300/00d4ff/ffffff?text=Классика+1"},
+                {id: 11, name: "Капитан Америка", description: "Я понял эту ссылку", image: "https://via.placeholder.com/400x300/ff3366/ffffff?text=Классика+2"},
+                {id: 12, name: "Социально Awkward", description: "Социально неловкий пингвин", image: "https://via.placeholder.com/400x300/00ff88/ffffff?text=Классика+3"},
+                {id: 13, name: "Параноидальный попугай", description: "Они наблюдают за мной", image: "https://via.placeholder.com/400x300/ffcc00/000000?text=Классика+4"},
+                {id: 14, name: "Счастливые слезы", description: "Слёзы радости и счастья", image: "https://via.placeholder.com/400x300/9c27b0/ffffff?text=Классика+5"},
+                {id: 15, name: "Злорадная улыбка", description: "Когда у конкурента проблемы", image: "https://via.placeholder.com/400x300/2196f3/ffffff?text=Классика+6"},
+                {id: 16, name: "Шок и недоверие", description: "Реакция на неожиданные новости", image: "https://via.placeholder.com/400x300/00d4ff/ffffff?text=Реакция+1"},
+                {id: 17, name: "Лицо ладони", description: "Когда ситуация безнадёжна", image: "https://via.placeholder.com/400x300/ff3366/ffffff?text=Реакция+2"},
+                {id: 18, name: "Злой начальник", description: "Реакция на плохую работу", image: "https://via.placeholder.com/400x300/00ff88/ffffff?text=Реакция+3"},
+                {id: 19, name: "Саркастичные аплодисменты", description: "Аплодисменты с сарказмом", image: "https://via.placeholder.com/400x300/ffcc00/000000?text=Реакция+4"},
+                {id: 20, name: "Внезапное прозрение", description: "Момент озарения и понимания", image: "https://via.placeholder.com/400x300/9c27b0/ffffff?text=Реакция+5"}
             ];
             
             // ===================== ИНИЦИАЛИЗАЦИЯ ЭЛЕМЕНТОВ =====================
@@ -1263,9 +1234,9 @@
             const uploadButton = document.getElementById('uploadButton');
             const imageUpload = document.getElementById('imageUpload');
             const saveDraftBtn = document.getElementById('saveDraft');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
             
             // Элементы вкладок
-            const categoryButtons = document.querySelectorAll('.category-btn');
             const editorTabs = document.querySelectorAll('.editor-tab');
             const editorPanels = document.querySelectorAll('.editor-panel');
             
@@ -1300,6 +1271,7 @@
                     currentImage = img;
                     drawMeme();
                     canvasLoader.style.display = 'none';
+                    showNotification('Изображение успешно загружено в редактор');
                 };
                 
                 img.onerror = function() {
@@ -1403,14 +1375,26 @@
             function initPopularTemplates() {
                 popularTemplatesContainer.innerHTML = '';
                 
-                // Фильтруем шаблоны по категории
-                let filteredTemplates = popularTemplates;
-                if (selectedTemplateCategory !== 'all') {
-                    filteredTemplates = popularTemplates.filter(t => t.category === selectedTemplateCategory);
+                // Отображаем первые мемы
+                loadMoreTemplates();
+            }
+            
+            // Загрузка дополнительных шаблонов
+            function loadMoreTemplates() {
+                const startIndex = (currentPage - 1) * memesPerPage;
+                const endIndex = startIndex + memesPerPage;
+                
+                // Получаем мемы для текущей страницы
+                const templatesToShow = popularTemplates.slice(startIndex, endIndex);
+                
+                if (templatesToShow.length === 0) {
+                    loadMoreBtn.style.display = 'none';
+                    showNotification('Все мемы загружены!');
+                    return;
                 }
                 
-                // Отображаем все шаблоны категории
-                filteredTemplates.forEach(template => {
+                // Отображаем мемы
+                templatesToShow.forEach(template => {
                     const memeCard = document.createElement('div');
                     memeCard.className = 'meme-card';
                     memeCard.innerHTML = `
@@ -1437,7 +1421,30 @@
                             loadImage(template.image);
                             memeEditor.classList.add('editor-active');
                             memeEditor.scrollIntoView({ behavior: 'smooth' });
-                            showNotification(`Шаблон "${template.name}" загружен`);
+                        }
+                    });
+                });
+                
+                // Увеличиваем номер страницы
+                currentPage++;
+                
+                // Скрываем кнопку, если больше нет мемов
+                if (currentPage * memesPerPage >= popularTemplates.length) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            }
+            
+            // Функция для добавления обработчиков событий на кнопки использования шаблона
+            function addTemplateEventListeners() {
+                document.querySelectorAll('.use-template').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const templateId = parseInt(this.getAttribute('data-id'));
+                        const template = popularTemplates.find(t => t.id === templateId);
+                        
+                        if (template) {
+                            loadImage(template.image);
+                            memeEditor.classList.add('editor-active');
+                            memeEditor.scrollIntoView({ behavior: 'smooth' });
                         }
                     });
                 });
@@ -1447,7 +1454,7 @@
             
             // Инициализация при загрузке страницы
             function init() {
-                // Загружаем логотип (можно использовать placeholder или ваш логотип)
+                // Загружаем логотип из папки images
                 const logoPaths = [
                     './images/logo.png',
                     './images/logo.jpg',
@@ -1606,6 +1613,11 @@
             });
             
             // ===================== ОСНОВНЫЕ КНОПКИ =====================
+            
+            // Кнопка "Загрузить еще"
+            loadMoreBtn.addEventListener('click', function() {
+                loadMoreTemplates();
+            });
             
             // Сброс редактора
             resetBtn.addEventListener('click', function() {
@@ -1776,28 +1788,6 @@
             
             // ===================== ВКЛАДКИ И НАВИГАЦИЯ =====================
             
-            // Переключение категорий
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    selectedTemplateCategory = category;
-                    initPopularTemplates();
-                    
-                    const categoryNames = {
-                        'all': 'Все',
-                        'funny': 'Смешные',
-                        'reactions': 'Реакции',
-                        'classic': 'Классика'
-                    };
-                    
-                    showNotification(`Показаны шаблоны: ${categoryNames[category]}`);
-                });
-            });
-            
             // Переключение вкладок редактора
             editorTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
@@ -1834,7 +1824,7 @@
             
             document.getElementById('faqLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                showNotification('Частые вопросы: 1) Сохраняйте проекты кнопкой "Сохранить проект", 2) Используйте шаблоны из категорий для быстрого старта');
+                showNotification('Частые вопросы: 1) Сохраняйте проекты кнопкой "Сохранить проект", 2) Используйте шаблоны для быстрого старта');
             });
             
             // ===================== ЗАПУСК ПРИЛОЖЕНИЯ =====================
