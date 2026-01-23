@@ -64,7 +64,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            cursor: pointer;
         }
         
         .logo-icon {
@@ -84,7 +83,6 @@
             height: 100%;
             object-fit: cover;
             border-radius: 10px;
-            display: none;
         }
         
         .logo-icon.has-custom-logo img {
@@ -631,30 +629,6 @@
             font-size: 20px;
         }
         
-        /* Branding customization */
-        .branding-settings {
-            background: rgba(255, 51, 102, 0.05);
-            border: 1px solid rgba(255, 51, 102, 0.2);
-        }
-        
-        .brand-color-picker {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .brand-color {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        
-        .brand-color.active {
-            border-color: white;
-        }
-        
         /* Footer */
         footer {
             background-color: var(--dark-light);
@@ -914,7 +888,7 @@
                 <div class="logo-icon" id="logoIcon">
                     <img id="customLogo" alt="Логотип">
                 </div>
-                <div class="logo-text" id="logoText">MEMS <span>TROJAN</span></div>
+                <div class="logo-text">MEMS <span>TROJAN</span></div>
             </div>
             <nav class="nav-links">
                 <a href="#templates">Шаблоны</a>
@@ -972,7 +946,6 @@
                         <div class="editor-tabs" id="editorTabs">
                             <button class="editor-tab active" data-panel="text">Текст</button>
                             <button class="editor-tab" data-panel="effects">Эффекты</button>
-                            <button class="editor-tab" data-panel="branding">Брендинг</button>
                         </div>
                         
                         <!-- Text Panel -->
@@ -1094,47 +1067,6 @@
                                         Сбросить
                                     </button>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Branding Panel -->
-                        <div class="editor-panel" id="brandingPanel">
-                            <div class="control-group branding-settings">
-                                <h4><i class="fas fa-crown"></i> Кастомизация бренда</h4>
-                                <p style="color: var(--gray); font-size: 14px; margin-bottom: 15px;">
-                                    Настройте логотип и цвета сайта под ваш бренд
-                                </p>
-                                
-                                <div class="range-container" style="margin-bottom: 15px;">
-                                    <label>Загрузить логотип:</label>
-                                    <input type="file" id="brandLogoUpload" accept="image/*" style="display: none;">
-                                    <button class="editor-btn secondary-btn" id="uploadBrandLogoBtn" style="padding: 8px 15px;">
-                                        <i class="fas fa-upload"></i> Выбрать файл
-                                    </button>
-                                </div>
-                                
-                                <div class="range-container" style="margin-bottom: 15px;">
-                                    <label>Название бренда:</label>
-                                    <input type="text" class="text-input" id="brandName" placeholder="Введите название бренда">
-                                </div>
-                                
-                                <div class="range-container" style="margin-bottom: 15px;">
-                                    <label>Цветовая схема:</label>
-                                    <div class="brand-color-picker">
-                                        <div class="brand-color active" style="background: linear-gradient(135deg, #00d4ff, #ff3366);" data-theme="default"></div>
-                                        <div class="brand-color" style="background: linear-gradient(135deg, #ff3366, #ff9966);" data-theme="warm"></div>
-                                        <div class="brand-color" style="background: linear-gradient(135deg, #00ff88, #00ccff);" data-theme="cool"></div>
-                                        <div class="brand-color" style="background: linear-gradient(135deg, #9966ff, #ff66cc);" data-theme="purple"></div>
-                                        <div class="brand-color" style="background: linear-gradient(135deg, #ffcc00, #ff6600);" data-theme="orange"></div>
-                                    </div>
-                                </div>
-                                
-                                <button class="editor-btn primary-btn" id="applyBranding" style="margin-top: 10px;">
-                                    <i class="fas fa-check"></i> Применить брендинг
-                                </button>
-                                <button class="editor-btn tertiary-btn" id="resetBranding" style="margin-top: 10px;">
-                                    <i class="fas fa-undo"></i> Сбросить
-                                </button>
                             </div>
                         </div>
                         
@@ -1275,16 +1207,16 @@
             // Массив из 25 популярных мемов (все из папки images)
             const popularTemplates = [
                 // Животные (10)
-                {id: 1, name: "Счастливый пес", category: "animals", description: "Радостная собака виляет хвостом", image: "images/meme1.jpg"},
-                {id: 2, name: "Удивлённый кот", category: "animals", description: "Кот с большими глазами от удивления", image: "images/meme2.jpg"},
-                {id: 3, name: "Кот за ноутбуком", category: "animals", description: "Серьёзный кот работает за компьютером", image: "images/meme3.jpg"},
-                {id: 4, name: "Философская кошка", category: "animals", description: "Кошка с задумчивым взглядом", image: "images/meme4.jpg"},
-                {id: 5, name: "Мудрая сова", category: "animals", description: "Сова с пронзительным взглядом", image: "images/meme5.jpg"},
-                {id: 6, name: "Смеющийся хаски", category: "animals", description: "Хаски с открытой пастью смеется", image: "images/meme6.jpg"},
-                {id: 7, name: "Сердитый хомяк", category: "animals", description: "Маленький хомяк с сердитым видом", image: "images/meme7.jpg"},
-                {id: 8, name: "Подмигивающий дельфин", category: "animals", description: "Дельфин с игривым выражением", image: "images/meme8.jpg"},
-                {id: 9, name: "Ленивый коала", category: "animals", description: "Коала спит на дереве", image: "images/meme9.jpg"},
-                {id: 10, name: "Хитрый лис", category: "animals", description: "Лис с хитрой улыбкой", image: "images/meme10.jpg"},
+               {id: 1, name: "Счастливый пес", category: "animals", description: "Кошачья поддержка, image: "images/meme1.jpg"},
+               {id: 2, name: "Удивлённый кот", category: "animals", description: "ПОВ январь 2026", image: "https://cs19.pikabu.ru/s/2026/01/09/18/qw5uwbtu.webp"},
+               {id: 3, name: "Кот за ноутбуком", category: "animals", description: "ПОВ MEMS TROAJAN", image: "https://cs16.pikabu.ru/s/2026/01/01/14/bjjcj2g6.webp"},
+               {id: 4, name: "Философская кошка", category: "animals", description: "0_0 с задумчивым взглядом", image: "https://cs15.pikabu.ru/post_img/2024/08/02/8/1722603600152288530.webp"},
+               {id: 5, name: "Мудрая сова", category: "animals", description: "БАЗАВЫЙ МИНИМУМ", image: "https://cs17.pikabu.ru/s/2026/01/22/18/nfbfkmw6.webp"},
+               {id: 6, name: "Смеющийся хаски", category: "animals", description: "Настройки каждого родителя", image: "https://cs16.pikabu.ru/s/2026/01/22/15/52aci7mn.webp"},
+               {id: 7, name: "Сердитый хомяк", category: "animals", description: "Да я успею...", image: "https://cs17.pikabu.ru/s/2026/01/22/12/yhnflgxj.webp"},
+               {id: 8, name: "Подмигивающий дельфин", category: "animals", description: "Я перехотел", image: "https://cs17.pikabu.ru/s/2026/01/22/09/3llflg2i.webp"},
+               {id: 9, name: "Ленивый коала", category: "animals", description: "Git удалили", image: "https://cs18.pikabu.ru/s/2026/01/22/09/5qbrcjqr.webp"},
+               {id: 10, name: "Хитрый лис", category: "animals", description: "МАМА Я ПРЕДПРЕНИМАТЕЛЬ", image: "https://cs20.pikabu.ru/s/2026/01/22/05/2ed2wb3u.webp"},
                 
                 // Реакции (8)
                 {id: 11, name: "Шок и недоверие", category: "reactions", description: "Реакция на неожиданные новости", image: "images/meme11.jpg"},
@@ -1325,16 +1257,9 @@
             const strokeWidthInput = document.getElementById('strokeWidth');
             const strokeWidthValue = document.getElementById('strokeWidthValue');
             
-            // Элементы брендинга
+            // Элементы логотипа
             const logoIcon = document.getElementById('logoIcon');
             const customLogo = document.getElementById('customLogo');
-            const logoText = document.getElementById('logoText');
-            const brandLogoUpload = document.getElementById('brandLogoUpload');
-            const uploadBrandLogoBtn = document.getElementById('uploadBrandLogoBtn');
-            const brandNameInput = document.getElementById('brandName');
-            const brandColorPickers = document.querySelectorAll('.brand-color');
-            const applyBrandingBtn = document.getElementById('applyBranding');
-            const resetBrandingBtn = document.getElementById('resetBranding');
             
             // Кнопки
             const downloadBtn = document.getElementById('downloadMeme');
@@ -1527,19 +1452,41 @@
             
             // Инициализация при загрузке страницы
             function init() {
-                // Пробуем загрузить логотип по умолчанию из папки images
-                const defaultLogo = 'images/logo.png';
-                const logoImg = new Image();
-                logoImg.onload = function() {
-                    customLogo.src = defaultLogo;
-                    customLogo.style.display = 'block';
-                    logoIcon.classList.add('has-custom-logo');
-                };
-                logoImg.onerror = function() {
-                    // Если логотипа нет, используем стандартный
-                    console.log('Логотип не найден, используется стандартный');
-                };
-                logoImg.src = defaultLogo;
+                // Загружаем логотип из папки images
+                const logoPaths = [
+                    'images/logo.png',
+                    'images/logo.jpg',
+                    'images/logo.svg',
+                    'images/logo.webp'
+                ];
+                
+                let logoIndex = 0;
+                
+                function tryLoadLogo() {
+                    if (logoIndex >= logoPaths.length) {
+                        console.log('Логотип не найден в папке images, используется стандартный');
+                        return;
+                    }
+                    
+                    const logoPath = logoPaths[logoIndex];
+                    const logoImg = new Image();
+                    
+                    logoImg.onload = function() {
+                        customLogo.src = logoPath;
+                        customLogo.style.display = 'block';
+                        logoIcon.classList.add('has-custom-logo');
+                        console.log('Логотип загружен:', logoPath);
+                    };
+                    
+                    logoImg.onerror = function() {
+                        logoIndex++;
+                        tryLoadLogo();
+                    };
+                    
+                    logoImg.src = logoPath;
+                }
+                
+                tryLoadLogo();
                 
                 // Загружаем первый шаблон
                 if (popularTemplates.length > 0) {
@@ -1548,9 +1495,6 @@
                 
                 // Инициализируем популярные шаблоны
                 initPopularTemplates();
-                
-                // Загружаем сохранённый брендинг
-                loadBranding();
                 
                 showNotification('Редактор MEMS TROJAN готов к работе!');
             }
@@ -1663,153 +1607,6 @@
                 currentState.filter = 'none';
                 drawMeme();
                 showNotification('Трансформации сброшены');
-            });
-            
-            // ===================== БРЕНДИНГ И ЛОГОТИП =====================
-            
-            // Загрузка брендинга из localStorage
-            function loadBranding() {
-                const savedBranding = localStorage.getItem('memsTrojanBranding');
-                if (savedBranding) {
-                    try {
-                        const branding = JSON.parse(savedBranding);
-                        
-                        // Загружаем логотип
-                        if (branding.logo && branding.logo !== '') {
-                            const logoImg = new Image();
-                            logoImg.onload = function() {
-                                customLogo.src = branding.logo;
-                                customLogo.style.display = 'block';
-                                logoIcon.classList.add('has-custom-logo');
-                            };
-                            logoImg.src = branding.logo;
-                        }
-                        
-                        // Загружаем название бренда
-                        if (branding.name) {
-                            logoText.innerHTML = branding.name + (branding.name.includes('TROJAN') ? '' : ' <span>TROJAN</span>');
-                            brandNameInput.value = branding.name.replace(' <span>TROJAN</span>', '');
-                        }
-                        
-                        // Загружаем цветовую схему
-                        if (branding.theme) {
-                            applyTheme(branding.theme);
-                            brandColorPickers.forEach(picker => {
-                                picker.classList.toggle('active', picker.getAttribute('data-theme') === branding.theme);
-                            });
-                        }
-                        
-                    } catch (e) {
-                        console.error('Ошибка загрузки брендинга:', e);
-                    }
-                }
-            }
-            
-            // Сохранение брендинга в localStorage
-            function saveBranding() {
-                const branding = {
-                    logo: customLogo.src || '',
-                    name: brandNameInput.value || 'MEMS',
-                    theme: document.querySelector('.brand-color.active').getAttribute('data-theme'),
-                    timestamp: Date.now()
-                };
-                
-                localStorage.setItem('memsTrojanBranding', JSON.stringify(branding));
-                showNotification('Брендинг успешно сохранён!');
-            }
-            
-            // Применение цветовой темы
-            function applyTheme(theme) {
-                const root = document.documentElement;
-                
-                switch (theme) {
-                    case 'warm':
-                        root.style.setProperty('--primary', '#ff6699');
-                        root.style.setProperty('--secondary', '#ff9966');
-                        break;
-                    case 'cool':
-                        root.style.setProperty('--primary', '#00ff88');
-                        root.style.setProperty('--secondary', '#00ccff');
-                        break;
-                    case 'purple':
-                        root.style.setProperty('--primary', '#9966ff');
-                        root.style.setProperty('--secondary', '#ff66cc');
-                        break;
-                    case 'orange':
-                        root.style.setProperty('--primary', '#ffcc00');
-                        root.style.setProperty('--secondary', '#ff6600');
-                        break;
-                    default:
-                        root.style.setProperty('--primary', '#00d4ff');
-                        root.style.setProperty('--secondary', '#ff3366');
-                }
-            }
-            
-            // Обработчики событий для брендинга
-            uploadBrandLogoBtn.addEventListener('click', function() {
-                brandLogoUpload.click();
-            });
-            
-            brandLogoUpload.addEventListener('change', function(e) {
-                if (e.target.files && e.target.files[0]) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        customLogo.src = event.target.result;
-                        customLogo.style.display = 'block';
-                        logoIcon.classList.add('has-custom-logo');
-                        showNotification('Логотип успешно загружен');
-                    };
-                    reader.readAsDataURL(e.target.files[0]);
-                }
-            });
-            
-            brandColorPickers.forEach(picker => {
-                picker.addEventListener('click', function() {
-                    brandColorPickers.forEach(p => p.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-            
-            applyBrandingBtn.addEventListener('click', function() {
-                // Применяем название бренда
-                const brandName = brandNameInput.value.trim() || 'MEMS';
-                logoText.innerHTML = brandName + ' <span>TROJAN</span>';
-                
-                // Применяем тему
-                const theme = document.querySelector('.brand-color.active').getAttribute('data-theme');
-                applyTheme(theme);
-                
-                // Сохраняем в localStorage
-                saveBranding();
-            });
-            
-            resetBrandingBtn.addEventListener('click', function() {
-                // Сбрасываем логотип
-                customLogo.src = '';
-                customLogo.style.display = 'none';
-                logoIcon.classList.remove('has-custom-logo');
-                
-                // Сбрасываем название
-                brandNameInput.value = 'MEMS';
-                logoText.innerHTML = 'MEMS <span>TROJAN</span>';
-                
-                // Сбрасываем тему
-                brandColorPickers.forEach(picker => {
-                    picker.classList.toggle('active', picker.getAttribute('data-theme') === 'default');
-                });
-                applyTheme('default');
-                
-                // Удаляем из localStorage
-                localStorage.removeItem('memsTrojanBranding');
-                showNotification('Брендинг сброшен до стандартного');
-            });
-            
-            // Клик по логотипу для быстрого редактирования
-            document.getElementById('logoContainer').addEventListener('click', function() {
-                memeEditor.classList.add('editor-active');
-                document.querySelector('[data-panel="branding"]').click();
-                memeEditor.scrollIntoView({ behavior: 'smooth' });
-                showNotification('Переход в настройки брендинга');
             });
             
             // ===================== ОСНОВНЫЕ КНОПКИ =====================
@@ -2047,7 +1844,7 @@
             
             document.getElementById('faqLink').addEventListener('click', function(e) {
                 e.preventDefault();
-                showNotification('Частые вопросы: 1) Сохраняйте проекты кнопкой "Сохранить проект", 2) Кастомизируйте брендинг во вкладке "Брендинг"');
+                showNotification('Частые вопросы: 1) Сохраняйте проекты кнопкой "Сохранить проект", 2) Используйте шаблоны из категорий для быстрого старта');
             });
             
             // ===================== ЗАПУСК ПРИЛОЖЕНИЯ =====================
