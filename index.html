@@ -1180,28 +1180,203 @@
             
             // ===================== ИНИЦИАЛИЗАЦИЯ ШАБЛОНОВ =====================
             
-            // Массив из популярных мемов из интернета с исправленными ID
+            // Массив мемов с приоритетом локальных файлов, потом fallback из интернета
             const popularTemplates = [
-                {id: 1, name: "Удивлённый кот", description: "ПОВ январь 2026", image: "https://cs19.pikabu.ru/s/2026/01/09/18/qw5uwbtu.webp"},
-                {id: 2, name: "Кот за ноутбуком", description: "ПОВ MEMS TROAJAN", image: "https://cs16.pikabu.ru/s/2026/01/01/14/bjjcj2g6.webp"},
-                {id: 3, name: "Философская кошка", description: "0_0 с задумчивым взглядом", image: "https://cs15.pikabu.ru/post_img/2024/08/02/8/1722603600152288530.webp"},
-                {id: 4, name: "Мудрая сова", description: "БАЗАВЫЙ МИНИМУМ", image: "https://cs17.pikabu.ru/s/2026/01/22/18/nfbfkmw6.webp"},
-                {id: 5, name: "Смеющийся хаски", description: "Настройки каждого родителя", image: "https://cs16.pikabu.ru/s/2026/01/22/15/52aci7mn.webp"},
-                {id: 6, name: "Сердитый хомяк", description: "Да я успею...", image: "https://cs17.pikabu.ru/s/2026/01/22/12/yhnflgxj.webp"},
-                {id: 7, name: "Подмигивающий дельфин", description: "Я перехотел", image: "https://cs17.pikabu.ru/s/2026/01/22/09/3llflg2i.webp"},
-                {id: 8, name: "Ленивый коала", description: "Git удалили", image: "https://cs18.pikabu.ru/s/2026/01/22/09/5qbrcjqr.webp"},
-                {id: 9, name: "Хитрый лис", description: "МАМА Я ПРЕДПРЕНИМАТЕЛЬ", image: "https://cs20.pikabu.ru/s/2026/01/22/05/2ed2wb3u.webp"},
-                {id: 10, name: "Довольный Павел", description: "Классический мем с улыбающимся мужчиной", image: "https://via.placeholder.com/400x300/00d4ff/ffffff?text=Классика+1"},
-                {id: 11, name: "Капитан Америка", description: "Я понял эту ссылку", image: "https://via.placeholder.com/400x300/ff3366/ffffff?text=Классика+2"},
-                {id: 12, name: "Социально Awkward", description: "Социально неловкий пингвин", image: "https://via.placeholder.com/400x300/00ff88/ffffff?text=Классика+3"},
-                {id: 13, name: "Параноидальный попугай", description: "Они наблюдают за мной", image: "https://via.placeholder.com/400x300/ffcc00/000000?text=Классика+4"},
-                {id: 14, name: "Счастливые слезы", description: "Слёзы радости и счастья", image: "https://via.placeholder.com/400x300/9c27b0/ffffff?text=Классика+5"},
-                {id: 15, name: "Злорадная улыбка", description: "Когда у конкурента проблемы", image: "https://via.placeholder.com/400x300/2196f3/ffffff?text=Классика+6"},
-                {id: 16, name: "Шок и недоверие", description: "Реакция на неожиданные новости", image: "https://via.placeholder.com/400x300/00d4ff/ffffff?text=Реакция+1"},
-                {id: 17, name: "Лицо ладони", description: "Когда ситуация безнадёжна", image: "https://via.placeholder.com/400x300/ff3366/ffffff?text=Реакция+2"},
-                {id: 18, name: "Злой начальник", description: "Реакция на плохую работу", image: "https://via.placeholder.com/400x300/00ff88/ffffff?text=Реакция+3"},
-                {id: 19, name: "Саркастичные аплодисменты", description: "Аплодисменты с сарказмом", image: "https://via.placeholder.com/400x300/ffcc00/000000?text=Реакция+4"},
-                {id: 20, name: "Внезапное прозрение", description: "Момент озарения и понимания", image: "https://via.placeholder.com/400x300/9c27b0/ffffff?text=Реакция+5"}
+                {
+                    id: 1, 
+                    name: "Удивлённый кот", 
+                    description: "ПОВ январь 2026", 
+                    localImages: [
+                        './mems/meme1.jpg',
+                        './mems/meme1.png',
+                        './mems/meme1.webp',
+                        './images/meme1.jpg',
+                        './images/meme1.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/00d4ff/ffffff?text=MEME+1'
+                },
+                {
+                    id: 2, 
+                    name: "Кот за ноутбуком", 
+                    description: "ПОВ MEMS TROAJAN", 
+                    localImages: [
+                        './mems/meme2.jpg',
+                        './mems/meme2.png',
+                        './mems/meme2.webp',
+                        './images/meme2.jpg',
+                        './images/meme2.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/ff3366/ffffff?text=MEME+2'
+                },
+                {
+                    id: 3, 
+                    name: "Философская кошка", 
+                    description: "0_0 с задумчивым взглядом", 
+                    localImages: [
+                        './mems/meme3.jpg',
+                        './mems/meme3.png',
+                        './mems/meme3.webp',
+                        './images/meme3.jpg',
+                        './images/meme3.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/00ff88/ffffff?text=MEME+3'
+                },
+                {
+                    id: 4, 
+                    name: "Мудрая сова", 
+                    description: "БАЗАВЫЙ МИНИМУМ", 
+                    localImages: [
+                        './mems/meme4.jpg',
+                        './mems/meme4.png',
+                        './mems/meme4.webp',
+                        './images/meme4.jpg',
+                        './images/meme4.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/ffcc00/000000?text=MEME+4'
+                },
+                {
+                    id: 5, 
+                    name: "Смеющийся хаски", 
+                    description: "Настройки каждого родителя", 
+                    localImages: [
+                        './mems/meme5.jpg',
+                        './mems/meme5.png',
+                        './mems/meme5.webp',
+                        './images/meme5.jpg',
+                        './images/meme5.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/9c27b0/ffffff?text=MEME+5'
+                },
+                {
+                    id: 6, 
+                    name: "Сердитый хомяк", 
+                    description: "Да я успею...", 
+                    localImages: [
+                        './mems/meme6.jpg',
+                        './mems/meme6.png',
+                        './mems/meme6.webp',
+                        './images/meme6.jpg',
+                        './images/meme6.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/2196f3/ffffff?text=MEME+6'
+                },
+                {
+                    id: 7, 
+                    name: "Подмигивающий дельфин", 
+                    description: "Я перехотел", 
+                    localImages: [
+                        './mems/meme7.jpg',
+                        './mems/meme7.png',
+                        './mems/meme7.webp',
+                        './images/meme7.jpg',
+                        './images/meme7.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/ff5722/ffffff?text=MEME+7'
+                },
+                {
+                    id: 8, 
+                    name: "Ленивый коала", 
+                    description: "Git удалили", 
+                    localImages: [
+                        './mems/meme8.jpg',
+                        './mems/meme8.png',
+                        './mems/meme8.webp',
+                        './images/meme8.jpg',
+                        './images/meme8.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/673ab7/ffffff?text=MEME+8'
+                },
+                {
+                    id: 9, 
+                    name: "Хитрый лис", 
+                    description: "МАМА Я ПРЕДПРЕНИМАТЕЛЬ", 
+                    localImages: [
+                        './mems/meme9.jpg',
+                        './mems/meme9.png',
+                        './mems/meme9.webp',
+                        './images/meme9.jpg',
+                        './images/meme9.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/00bcd4/ffffff?text=MEME+9'
+                },
+                {
+                    id: 10, 
+                    name: "Довольный Павел", 
+                    description: "Классический мем с улыбающимся мужчиной", 
+                    localImages: [
+                        './mems/meme10.jpg',
+                        './mems/meme10.png',
+                        './mems/meme10.webp',
+                        './images/meme10.jpg',
+                        './images/meme10.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/00d4ff/ffffff?text=Классика+1'
+                },
+                {
+                    id: 11, 
+                    name: "Капитан Америка", 
+                    description: "Я понял эту ссылку", 
+                    localImages: [
+                        './mems/meme11.jpg',
+                        './mems/meme11.png',
+                        './mems/meme11.webp',
+                        './images/meme11.jpg',
+                        './images/meme11.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/ff3366/ffffff?text=Классика+2'
+                },
+                {
+                    id: 12, 
+                    name: "Социально Awkward", 
+                    description: "Социально неловкий пингвин", 
+                    localImages: [
+                        './mems/meme12.jpg',
+                        './mems/meme12.png',
+                        './mems/meme12.webp',
+                        './images/meme12.jpg',
+                        './images/meme12.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/00ff88/ffffff?text=Классика+3'
+                },
+                {
+                    id: 13, 
+                    name: "Параноидальный попугай", 
+                    description: "Они наблюдают за мной", 
+                    localImages: [
+                        './mems/meme13.jpg',
+                        './mems/meme13.png',
+                        './mems/meme13.webp',
+                        './images/meme13.jpg',
+                        './images/meme13.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/ffcc00/000000?text=Классика+4'
+                },
+                {
+                    id: 14, 
+                    name: "Счастливые слезы", 
+                    description: "Слёзы радости и счастья", 
+                    localImages: [
+                        './mems/meme14.jpg',
+                        './mems/meme14.png',
+                        './mems/meme14.webp',
+                        './images/meme14.jpg',
+                        './images/meme14.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/9c27b0/ffffff?text=Классика+5'
+                },
+                {
+                    id: 15, 
+                    name: "Злорадная улыбка", 
+                    description: "Когда у конкурента проблемы", 
+                    localImages: [
+                        './mems/meme15.jpg',
+                        './mems/meme15.png',
+                        './mems/meme15.webp',
+                        './images/meme15.jpg',
+                        './images/meme15.png'
+                    ],
+                    fallbackImage: 'https://placehold.co/600x400/2196f3/ffffff?text=Классика+6'
+                }
             ];
             
             // ===================== ИНИЦИАЛИЗАЦИЯ ЭЛЕМЕНТОВ =====================
@@ -1247,6 +1422,9 @@
             const notificationText = document.getElementById('notificationText');
             const dragDropArea = document.getElementById('dragDropArea');
             
+            // Кэш для найденных изображений
+            const imageCache = {};
+            
             // ===================== ОСНОВНЫЕ ФУНКЦИИ =====================
             
             // Функция для показа уведомлений
@@ -1258,6 +1436,44 @@
                 setTimeout(() => {
                     notification.style.display = 'none';
                 }, 3000);
+            }
+            
+            // Функция для поиска работающего изображения из списка
+            function findWorkingImage(template) {
+                // Если уже есть в кэше, возвращаем из кэша
+                if (imageCache[template.id]) {
+                    return Promise.resolve(imageCache[template.id]);
+                }
+                
+                return new Promise((resolve) => {
+                    let currentIndex = 0;
+                    
+                    function tryNextImage() {
+                        if (currentIndex >= template.localImages.length) {
+                            // Все локальные изображения не загрузились, используем fallback
+                            imageCache[template.id] = template.fallbackImage;
+                            resolve(template.fallbackImage);
+                            return;
+                        }
+                        
+                        const img = new Image();
+                        img.onload = function() {
+                            // Нашли работающее локальное изображение
+                            imageCache[template.id] = template.localImages[currentIndex];
+                            resolve(template.localImages[currentIndex]);
+                        };
+                        
+                        img.onerror = function() {
+                            // Пробуем следующее изображение
+                            currentIndex++;
+                            tryNextImage();
+                        };
+                        
+                        img.src = template.localImages[currentIndex];
+                    }
+                    
+                    tryNextImage();
+                });
             }
             
             // Функция загрузки изображения
@@ -1393,14 +1609,18 @@
                     return;
                 }
                 
-                // Отображаем мемы
+                // Загружаем каждый шаблон
                 templatesToShow.forEach(template => {
+                    // Создаем карточку мема
                     const memeCard = document.createElement('div');
                     memeCard.className = 'meme-card';
+                    memeCard.id = `meme-card-${template.id}`;
+                    
+                    // Временно показываем заглушку
                     memeCard.innerHTML = `
                         <div class="meme-image">
-                            <img src="${template.image}" alt="${template.name}" 
-                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/666666/ffffff?text=Ошибка+загрузки';">
+                            <div class="loader" style="display: block;"></div>
+                            <img src="" alt="${template.name}" style="display: none;">
                         </div>
                         <div class="meme-info">
                             <h3>${template.name}</h3>
@@ -1408,7 +1628,26 @@
                             <button class="use-template" data-id="${template.id}">Использовать шаблон</button>
                         </div>
                     `;
+                    
                     popularTemplatesContainer.appendChild(memeCard);
+                    
+                    // Ищем работающее изображение
+                    findWorkingImage(template).then(imageSrc => {
+                        const card = document.getElementById(`meme-card-${template.id}`);
+                        if (card) {
+                            const img = card.querySelector('img');
+                            const loader = card.querySelector('.loader');
+                            
+                            img.src = imageSrc;
+                            img.style.display = 'block';
+                            loader.style.display = 'none';
+                            
+                            // Добавляем обработчик ошибок для изображения
+                            img.onerror = function() {
+                                this.src = template.fallbackImage;
+                            };
+                        }
+                    });
                 });
                 
                 // Инициализируем кнопки использования шаблона
@@ -1418,7 +1657,15 @@
                         const template = popularTemplates.find(t => t.id === templateId);
                         
                         if (template) {
-                            loadImage(template.image);
+                            // Используем кэшированное изображение или ищем заново
+                            if (imageCache[templateId]) {
+                                loadImage(imageCache[templateId]);
+                            } else {
+                                findWorkingImage(template).then(imageSrc => {
+                                    loadImage(imageSrc);
+                                });
+                            }
+                            
                             memeEditor.classList.add('editor-active');
                             memeEditor.scrollIntoView({ behavior: 'smooth' });
                         }
@@ -1434,22 +1681,6 @@
                 }
             }
             
-            // Функция для добавления обработчиков событий на кнопки использования шаблона
-            function addTemplateEventListeners() {
-                document.querySelectorAll('.use-template').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const templateId = parseInt(this.getAttribute('data-id'));
-                        const template = popularTemplates.find(t => t.id === templateId);
-                        
-                        if (template) {
-                            loadImage(template.image);
-                            memeEditor.classList.add('editor-active');
-                            memeEditor.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    });
-                });
-            }
-            
             // ===================== ИНИЦИАЛИЗАЦИЯ СОБЫТИЙ =====================
             
             // Инициализация при загрузке страницы
@@ -1460,7 +1691,7 @@
                     './images/logo.jpg',
                     './images/logo.svg',
                     './images/logo.webp',
-                    'https://via.placeholder.com/50/00d4ff/0a0e17?text=MT'
+                    'https://placehold.co/50/00d4ff/0a0e17?text=MT'
                 ];
                 
                 let logoIndex = 0;
@@ -1491,9 +1722,11 @@
                 
                 tryLoadLogo();
                 
-                // Загружаем первый шаблон
+                // Загружаем первый шаблон как стартовое изображение
                 if (popularTemplates.length > 0) {
-                    loadImage(popularTemplates[0].image);
+                    findWorkingImage(popularTemplates[0]).then(imageSrc => {
+                        loadImage(imageSrc);
+                    });
                 }
                 
                 // Инициализируем популярные шаблоны
